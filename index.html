@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--
-  Shiki 1.00
+  Shiki 1.01
   created by @spring_raining (http://harusamex.com)
   (c) 2014 spring_raining
   CC BY 4.0
@@ -22,6 +22,7 @@
 
   <!-- Variables -->
   <meta name="text:Google Author" content="" />
+  <meta name="text:Google Analytics ID" content="" />
 
   <meta name="if:Enable Tweet Button" content="1" />
   <meta name="if:Enable Bookmark Button" content="1" />
@@ -86,6 +87,18 @@
   <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '{text:Google Analytics ID}', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- END Google Analytics -->
 
   <style type="text/css">
     body {
@@ -1369,7 +1382,7 @@
         {/block:JumpPagination}
         {block:NextPage}
           <a href="{NextPage}" class="next" rel="next">Next</a>
-          <div id="next_url" data-shiki-nextPageURL="{NextPage}"></div>
+          <div class="next-url" data-shiki-nextPageURL="{NextPage}"></div>
         {/block:NextPage}
       </div>
     {/block:Pagination}
@@ -1382,7 +1395,8 @@
       var updateQueue = [];
       var updateFlame = 15;
       var nowFetching = false;
-      var nextPageURL = $("#next_url").attr("data-shiki-nextPageURL");
+      var nextPageURL = [];
+      var finalPage = false;
       var photosetHeight = 0.75;
 
       var windowAspect = function() {
@@ -1487,25 +1501,29 @@
 
         // オートページャー
         {block:IndexPage}
-        if (!nowFetching && $(document).height() - (height + window.innerHeight) < 1000) {
-          if (nextPageURL && nextPageURL !== "final") {
-            nowFetching = true;
-            fetchNextPage(nextPageURL).then(function(data) {
-              $(data).find("article").appendTo("#main");
-              nextPageURL = $(data).find("#next_url").attr("data-shiki-nextPageURL");
-              $(window).trigger("resize");
-              nowFetching = false;
-            }, function(data) {
-              console.log(data);
-              console.log("error!");
-              nowFetching = false;
-            });
+          if (!nowFetching && !finalPage && $(document).height() - (height + window.innerHeight) < 1000) {
+            if (nextPageURL.length !== 0) {
+              nowFetching = true;
+              var url = nextPageURL.shift();
+              fetchNextPage(url).then(function(data) {
+                $(data).find("article").appendTo("#main");
+                nextPageURL = [];
+                $(data).find(".next-url").each(function() {
+                  nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
+                });
+                nowFetching = false;
+                $(window).trigger("resize");
+              }, function(data) {
+                // fetch next nextPageURL
+                nowFetching = false;
+                $(window).trigger("scroll");
+              });
+            }
+            else {
+              $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
+              finalPage = true;
+            }
           }
-          else if (!nextPageURL) {
-            $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
-            nextPageURL = "final";
-          }
-        }
         {/block:IndexPage}
       });
 
@@ -1521,6 +1539,10 @@
           });
         {/block:IfOmitLongText}
         {/block:IndexPage}
+      });
+
+      $(".next-url").each(function() {
+        nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
       });
 
       // ↑All preparations have done↑
