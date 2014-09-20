@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--
-  Shiki 1.02
+  Shiki 1.03
   created by @spring_raining (http://harusamex.com)
   (c) 2014 spring_raining
   CC BY 4.0
@@ -221,6 +221,26 @@
     .nav li.shiki-logo {
         height: 18px;
         margin-top: 0px;
+    }
+
+    .note-info {
+      vertical-align: middle;
+    }
+
+    .note-info .favicon {
+      margin-right: 4px;
+      margin-bottom: -2px;
+    }
+
+    .note-info span {
+      margin-right: 16px;
+    }
+
+    .note-info svg {
+      height: 1em;
+      margin-right: 4px;
+      margin-bottom: -2px;
+      fill: {color:Accent color};
     }
 
     .reblog-button {
@@ -671,17 +691,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
@@ -743,17 +765,19 @@
                     <div class="note-info">
                       {block:RebloggedFrom}
                         <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
                         </span>
-                        »
                         <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
                         </span>
-                        »
                       {/block:RebloggedFrom}
                       {block:NoteCount}
                         <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                         </span>
                       {/block:NoteCount}
                     </div>
@@ -827,17 +851,19 @@
                     <div class="note-info">
                       {block:RebloggedFrom}
                         <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
                         </span>
-                        »
                         <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
                         </span>
-                        »
                       {/block:RebloggedFrom}
                       {block:NoteCount}
                         <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                         </span>
                       {/block:NoteCount}
                     </div>
@@ -902,17 +928,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
@@ -973,17 +1001,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
@@ -1055,17 +1085,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
@@ -1122,17 +1154,19 @@
                     <div class="note-info">
                       {block:RebloggedFrom}
                         <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
                         </span>
-                        »
                         <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
                         </span>
-                        »
                       {/block:RebloggedFrom}
                       {block:NoteCount}
                         <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                         </span>
                       {/block:NoteCount}
                     </div>
@@ -1201,17 +1235,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
@@ -1274,17 +1310,19 @@
                   <div class="note-info">
                     {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>O <img src="{ReblogRootPortraitURL-16}" class="favicon"/> {ReblogRootName}</a>
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
                       </span>
-                      »
                       <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>R <img src="{ReblogParentPortraitURL-16}" class="favicon"/> {ReblogParentName}</a>
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
                       </span>
-                      »
                     {/block:RebloggedFrom}
                     {block:NoteCount}
                       <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>N {NoteCount}</a>
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
                     {/block:NoteCount}
                   </div>
