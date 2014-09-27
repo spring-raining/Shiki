@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--
-  Shiki 1.03
+  Shiki 1.04
   created by @spring_raining (http://harusamex.com)
   (c) 2014 spring_raining
   CC BY 4.0
@@ -29,12 +29,6 @@
   <meta name="if:Enable Like Button" content="1" />
   <meta name="if:Enable Plus1 Button" content="1" />
 
-  <meta name="font:Title" content="Helvetica Neue" />
-  <meta name="font:Body" content="Arial, Helvetica, sans-serif" />
-  <meta name="image:Header" content="{HeaderImage}"/>
-  <meta name="color:Background" content="{BackgroundColor}" />
-  <meta name="color:Title color" content="{TitleColor}" />
-  <meta name="color:Accent color" content="{AccentColor}" />
   <meta name="if:Omit long text" content="1" />
   <meta name="if:Show title" content="1" />
   <meta name="if:Show copyright" content="1" />
@@ -103,13 +97,13 @@
   <style type="text/css">
     body {
       margin: 0;
-      background-color: {color:Background};
-      color: {color:Text};
-      font-family: {font:Body};
+      background-color: {BackgroundColor};
+      /*color: {color:Text};*/
+      font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
     }
 
     a {
-      color: {color:Accent color};
+      color: {AccentColor};
       text-decoration: none;
     }
 
@@ -129,8 +123,10 @@
     }
 
     h1.blog-title {
-      color: {color:Title color};
-      font: bold 40px {font:Title};
+      font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
+      font-weight: {TitleFontWeight};
+      color: {TitleColor};
+      font: bold 40px;
       margin-bottom: 15px;
     }
 
@@ -147,7 +143,7 @@
       text-align: center;
       line-height: 40px;
       color: #fff;
-      background-color: {color:Accent color};
+      background-color: {AccentColor};
     }
 
     .button:hover {
@@ -240,15 +236,15 @@
       height: 1em;
       margin-right: 4px;
       margin-bottom: -2px;
-      fill: {color:Accent color};
+      fill: {AccentColor};
     }
 
     .reblog-button {
-      background-color: {color:Accent color};
+      background-color: {AccentColor};
     }
 
     .like-button {
-      background-color: {color:Accent color};
+      background-color: {AccentColor};
     }
 
     .pull-right {
@@ -279,7 +275,7 @@
       top: 62vh;
       width: 100%;
       height: 8vh;
-      background: linear-gradient(rgba(0,0,0,0), {color:Background});
+      background: linear-gradient(rgba(0,0,0,0), {BackgroundColor});
     }
 
     header {
@@ -408,14 +404,14 @@
       width: auto;
       padding: 2.5em;
       color: #fff;
-      background-color: {color:Accent color};
+      background-color: {AccentColor};
       text-align: center;
       border-radius: 30px;
     }
 
     article.link a.link-url:hover {
       text-decoration: none;
-      background-color: {color:Accent color};
+      background-color: {AccentColor};
     }
 
     article.link .link-title {
@@ -566,7 +562,7 @@
     <!-- インデックスページ ヘッダー -->
     {block:IndexPage}
       <header id="header">
-        <div class="header-container" {block:IfHeaderImage}style="background-image: url({image:Header});"{/block:IfHeaderImage}></div>
+        <div class="header-container" {block:IfHeaderImage}style="background-image: url({HeaderImage});"{/block:IfHeaderImage}></div>
 
         <div class="entry-block">
           <nav class="nav" role="navigation">
