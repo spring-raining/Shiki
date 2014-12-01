@@ -159,10 +159,6 @@
     }
 
     .entry-block {
-      color: #ddd;
-      font-size: 13px;
-      background-color: rgba(33, 33, 33, 0.2);
-      opacity: 0.95;
       padding: 12px 0;
     }
 
@@ -382,21 +378,8 @@
       position: relative;
     }
 
-    article.photo .photo-block {
-      position: relative;
-      overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-      background-repeat: no-repeat;
-    }
-
     article.photo .photo-block.photoset {
       height: 75vh;
-    }
-
-    article.photo .photo-container {
-      width: 10000px;
-      height: 10000px;
     }
 
     /* はてブChrome拡張用 */
@@ -405,10 +388,22 @@
       padding: 0;
     }
 
+  {block:IndexPage}
+    article.photo .photo-container {
+      width: 10000px;
+      height: 10000px;
+    }
+
+    article.photo .photo-block {
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background-repeat: no-repeat;
+    }
+
     article.photo .hover-area {
-      {block:IndexPage}
       position: absolute;
-      {/block:IndexPage}
       top: 0;
       right: 0;
       width: 50vw;
@@ -419,6 +414,10 @@
       width: 100%;
       height: 100%;
       overflow: scroll;
+      color: #ddd;
+      font-size: 13px;
+      background-color: rgba(33, 33, 33, 0.2);
+      opacity: 0.95;
       transform: translate3d(50vw, 0, 0);
       transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
     }
@@ -427,6 +426,7 @@
       transform: translate3d(0, 0, 0);
       background-color: rgba(33, 33, 33, 0.7);
     }
+  {/block:IndexPage}
 
     article.quote .entry-container {
       padding: 108px 0;
@@ -682,7 +682,7 @@
 
     <!-- パーマリンクページ ヘッダー -->
     {block:PermalinkPage}
-      <div class="entry-block">
+      <div class="navbar">
         <nav class="nav" role="navigation">
           <ul>
             <li>
@@ -705,9 +705,9 @@
             </li>
             {block:IfShowCopyright}
             <li class="pull-right">
-              <span class="copyright">
+              <a href="{BlogURL}" class="copyright">
                 ©{CopyrightYears} {Title}
-              </span>
+              </a>
             </li>
             {/block:IfShowCopyright}
           </ul>
@@ -814,7 +814,7 @@
                 </a>
               </div>
 
-              <div class="hover-area">
+              {block:IndexPage}<div class="hover-area">{/block:IndexPage}
               <div class="entry-block">
                 <div class="caption entry-text">
                   {block:Caption}
@@ -882,7 +882,7 @@
                   </ul>
                 </div>
               </div>
-              </div>
+              {block:IndexPage}</div>{/block:IndexPage}
             </div>
           {/block:Photo}
 
@@ -1521,7 +1521,8 @@
         $photo.css("background-size", (photoAspect > windowAspect())? "100vw auto" : "auto 100vh");
         {/block:IndexPage}
         {block:PermalinkPage}
-          $photo.css("background-size", "100vw auto");
+          $photo.css("background-size", "100vw auto")
+                  .css("height", window.innerWidth * photoAspect + "px");
         {/block:PermalinkPage}
         return $photo;
       };
