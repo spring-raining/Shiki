@@ -158,6 +158,16 @@
       font-size: 12px;
     }
 
+    .entry-container {
+      padding: 108px 0;
+    }
+
+    @media screen and (max-width: 480px) {
+      .entry-container {
+        padding: 64px 0;
+      }
+    }
+
     .entry-block {
       padding: 12px 0;
     }
@@ -167,6 +177,13 @@
       width: 80%;
       max-width: 1000px;
       margin: 0 auto;
+    }
+
+    @media screen and (max-width: 480px) {
+      .entry-text {
+        width: auto;
+        margin: 0 12px;
+      }
     }
 
     .caption {
@@ -228,6 +245,31 @@
     .nav li.shiki-logo {
         height: 18px;
         margin-top: 0px;
+    }
+
+    @media screen and (max-width: 720px) {
+      .nav ul {
+        padding: 0;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      body.mobile .nav li.shiki-logo {
+        display: none;
+      }
+    }
+
+    body.mobile .nav li {
+      width: 100%;
+    }
+
+    body.mobile .nav li a {
+      line-height: 48px;
+      padding-right: 480px;
+    }
+
+    body.mobile .nav li.shiki-logo {
+      display: none;
     }
 
     .note-info {
@@ -294,7 +336,6 @@
       top: 0;
       left: 0;
       width: 0;
-      height: 62px;
       padding: 0;
       transform: translate3d(62px, 0, 0);
       transition: 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -335,6 +376,19 @@
       transition: background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
+    body.mobile header .navbar {
+      transform: translate3d(0, 62px, 0);
+    }
+
+    body.mobile header .navbar.show {
+      transform: translate3d(0, 62px, 0);
+    }
+
+    body.mobile header .navbar .nav-handle {
+      top: -62px;
+      left: 0;
+    }
+
     .nav-handle span {
       display: block;
       margin: 24px;
@@ -347,24 +401,16 @@
 
     header .title-block {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 400px;
-      height: 100px;
-      margin-top: -50px;
-      margin-left: -200px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
       text-align: center;
+      width: 100%;
+      height: 100px;
     }
 
     article.post * {
       overflow-x: hidden;
-    }
-
-    article.text .entry-container {
-      padding: 108px 0;
-      {block:IndexPage}
-        padding-top: 36px;
-      {/block:IndexPage}
     }
 
     article.text .like-and-reblog-buttons {
@@ -376,10 +422,7 @@
 
     article.photo .entry-container {
       position: relative;
-    }
-
-    article.photo .photo-block.photoset {
-      height: 75vh;
+      padding: 0;
     }
 
     /* はてブChrome拡張用 */
@@ -398,11 +441,10 @@
       position: relative;
       overflow: hidden;
       width: 100vw;
-      height: 100vh;
       background-repeat: no-repeat;
     }
 
-    article.photo .hover-area {
+    body.desktop article.photo .hover-area {
       position: absolute;
       top: 0;
       right: 0;
@@ -410,7 +452,7 @@
       height: 100%;
     }
 
-    article.photo .entry-block {
+    body.desktop article.photo .entry-block {
       width: 100%;
       height: 100%;
       overflow: scroll;
@@ -422,25 +464,32 @@
       transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    article.photo .hover-area.hover .entry-block {
+    body.desktop article.photo .hover-area.hover .entry-block {
       transform: translate3d(0, 0, 0);
       background-color: rgba(33, 33, 33, 0.7);
     }
-  {/block:IndexPage}
 
-    article.quote .entry-container {
-      padding: 108px 0;
-      {block:IndexPage}
-        padding-top: 36px;
-      {/block:IndexPage}
+    body.mobile .entry-block {
+      display: none;
     }
+  {/block:IndexPage}
 
     article.quote .short blockquote {
       font-size: 2.4em;
     }
 
     article.quote .medium blockquote {
-      font-size: 1.6em;
+      font-size: 1.8em;
+    }
+
+    article.quote .long blockquote {
+      font-size: 1.2em;
+    }
+
+    @media screen and (max-width: 480px) {
+      article.quote .long blockquote {
+        font-size: 1.1em;
+      }
     }
 
     article.quote blockquote:before {
@@ -461,13 +510,6 @@
 
     article.link .entry-header {
       margin-top: 20px;
-    }
-
-    article.link .entry-container {
-      padding: 108px 0;
-      {block:IndexPage}
-        padding-top: 36px;
-      {/block:IndexPage}
     }
 
     article.link a.link-url {
@@ -501,13 +543,6 @@
       top: -66px;
     }
 
-    article.chat .entry-container {
-      padding: 108px 0;
-      {block:IndexPage}
-        padding-top: 36px;
-      {/block:IndexPage}
-    }
-
     article.chat li {
       list-style: none;
     }
@@ -521,6 +556,7 @@
 
     article.video .entry-container {
       position: relative;
+      padding: 0;
     }
 
     article.video .video-iframe {
@@ -548,6 +584,7 @@
 
     article.audio .entry-container {
       position: relative;
+      padding: 0;
     }
 
     article.audio .video-iframe {
@@ -571,13 +608,6 @@
       top: 0;
       left: 0;
       width: 100%;
-    }
-
-    article.answer .entry-container {
-      padding: 108px 0;
-      {block:IndexPage}
-        padding-top: 36px;
-      {/block:IndexPage}
     }
 
     article.answer .question {
@@ -636,9 +666,6 @@
         <div class="header-container" {block:IfHeaderImage}style="background-image: url({HeaderImage});"{/block:IfHeaderImage}></div>
 
         <div class="hover-area navbar">
-          <div class="nav-handle">
-            <span></span>
-          </div>
           <nav class="nav" role="navigation" class="">
             <ul>
               {block:HasPages}
@@ -659,12 +686,15 @@
               {block:IfShowCopyright}
               <li class="pull-right">
                 <a href="{BlogURL}" class="copyright">
-                  ©{CopyrightYears} {Title}
+                  ©{Title}
                 </a>
               </li>
               {/block:IfShowCopyright}
             </ul>
           </nav>
+          <div class="nav-handle">
+            <span></span>
+          </div>
         </div>
 
         <div class="title-block">
@@ -685,9 +715,6 @@
       <div class="navbar">
         <nav class="nav" role="navigation">
           <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
             {block:HasPages}
               {block:Pages}
               <li>
@@ -814,7 +841,7 @@
                 </a>
               </div>
 
-              {block:IndexPage}<div class="hover-area">{/block:IndexPage}
+              <div class="hover-area">
               <div class="entry-block">
                 <div class="caption entry-text">
                   {block:Caption}
@@ -882,7 +909,7 @@
                   </ul>
                 </div>
               </div>
-              {block:IndexPage}</div>{/block:IndexPage}
+              </div>
             </div>
           {/block:Photo}
 
@@ -904,6 +931,7 @@
                 </div>
               {/block:Photos}
 
+              <div class="hover-area">
               <div class="entry-block">
                 <div class="caption entry-text">
                   {block:Caption}
@@ -970,6 +998,7 @@
                     <li class="like-button">{LikeButton color="white" size="24"}</li>
                   </ul>
                 </div>
+              </div>
               </div>
             </div>
           {/block:Photoset}
@@ -1503,23 +1532,54 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script type="text/javascript">
     $(function() {
-      var updateQueue = [];
-      var updateFlame = 15;
       var nowFetching = false;
       var nextPageURL = [];
       var finalPage = false;
-      var photosetHeight = 0.75;
+      var isDesktop = false;
+      var appearingPosts = {};
 
       var windowAspect = function() {
-        return window.innerHeight / window.innerWidth;
+        return (isDesktop)? window.innerHeight / window.innerWidth : firstWindowAspect;
       };
 
+      var windowInnerHeight = function() {
+        return (isDesktop)? window.innerHeight : firstInnerHeight;
+      };
+
+      var windowInnerWidth = function() {
+        return (isDesktop)? window.innerWidth : firstInnerWidth;
+      };
+
+      var firstWindowAspect = window.innerHeight / window.innerWidth;
+      var firstInnerHeight = window.innerHeight;
+      var firstInnerWidth = window.innerWidth;
+
       var setPhotoCSS = function($photo) {
+        var heightInfluenceParam = 0.6;
         var photoAspect = $photo.attr("data-shiki-photoHeight") / $photo.attr("data-shiki-photoWidth");
         $photo.attr("data-shiki-photoAspect", photoAspect);
+
         {block:IndexPage}
-        $photo.css("background-size", (photoAspect > windowAspect())? "100vw auto" : "auto 100vh");
+        var areaHeight = windowInnerWidth() * photoAspect * heightInfluenceParam;
+        if (areaHeight > windowInnerHeight()) {
+          areaHeight -= (areaHeight - windowInnerHeight()) * (1 - heightInfluenceParam);
+        }
+        var areaAspect = areaHeight / windowInnerWidth();
+        $photo.css("background-size", (photoAspect > areaAspect)?
+                                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
+                .attr("data-shiki-areaHeight", areaHeight);
+        $photo.parents(".photo-block").css("height", areaHeight + "px");
+
+        if (isDesktop) {
+          $photo.parents(".entry-container").children(".hover-area")
+            .on("mouseenter", function (e) {
+              $(this).addClass("show hover");
+            }).on("mouseleave", function (e) {
+              $(this).removeClass("show hover");
+            });
+        }
         {/block:IndexPage}
+
         {block:PermalinkPage}
           $photo.css("background-size", "100vw auto")
                   .css("height", window.innerWidth * photoAspect + "px");
@@ -1527,36 +1587,27 @@
         return $photo;
       };
 
+      {block:IndexPage}
       var updatePhotoPosition = function($photo) {
         if ($photo.css("background-image") === "none") {
           $photo.css("background-image", "url(" + $photo.attr("data-shiki-photoURL") + ")")
         }
 
         var relativeTop = $(window).scrollTop() - $photo.parents(".photo-block").offset().top;
-        var areaWidth  = window.innerWidth;
-        var areaHeight = window.innerHeight;
-        var photoWidth  = $photo.attr("data-shiki-photoWidth");
-        var photoHeight = $photo.attr("data-shiki-photoHeight");
-        var scrollRate = (relativeTop + window.innerHeight) / (window.innerHeight + areaHeight);
-        var areaAspect = areaHeight / areaWidth;
-        var topDiff = window.innerHeight * (scrollRate - 0.5) * 2;
-        if ($photo.attr("data-shiki-photoAspect") > areaAspect) {
-          topDiff += (window.innerHeight - photoHeight * window.innerWidth / photoWidth) * (1 - scrollRate);
-          $photo.css("transform", "translate3d(0,"+topDiff+"px,0)");
-          /*updateQueue.push({
-            object: $photo,
-            css:    "center " + topDiff + "px"
-          });*/
-        } else {
-          var leftDiff = (window.innerWidth - photoWidth * window.innerHeight / photoHeight) * scrollRate;
-          $photo.css("transform", "translate3d("+leftDiff+"px,"+topDiff+"px,0)");
-          /*updateQueue.push({
-            object: $photo,
-            css:    leftDiff + "px center"
-          });*/
-        }
+        var areaWidth  = windowInnerWidth();
+        var areaHeight =  parseFloat($photo.attr("data-shiki-areaHeight"));
+        var photoWidth  = parseInt($photo.attr("data-shiki-photoWidth"));
+        var photoHeight = parseInt($photo.attr("data-shiki-photoHeight"));
+        var scrollRate = (windowAspect() / 2 > areaHeight / areaWidth)?
+                          (windowInnerHeight() - areaHeight + relativeTop) / (windowInnerHeight())
+                        : (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight / 2); //(relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight);
+        var topDiff = areaHeight * (scrollRate - 0.5) * 2;
+        topDiff += (areaHeight - photoHeight * areaWidth / photoWidth) * (scrollRate);
+        topDiff = (1 - scrollRate) * (areaHeight - (photoHeight * areaWidth / photoWidth));//- areaHeight * (1 - scrollRate) + areaHeight * scrollRate;
+        $photo.css("transform", "translate3d(0,"+topDiff+"px,0)");
         return $photo;
       };
+      {/block:IndexPage}
 
       var fetchNextPage = function(url) {
         var d = new $.Deferred();
@@ -1569,45 +1620,61 @@
         return d.promise();
       };
 
+      // スマホ振り分け
+      if (navigator.userAgent.indexOf("Mobile") > 0 ||
+          navigator.userAgent.indexOf("Android") > 0) {
+        $("body").addClass("mobile");
+        isDesktop = false;
+      } else {
+        $("body").addClass("desktop");
+        isDesktop = true;
+      }
+
+      {block:IndexPage}
+      if (isDesktop) {
+        $(".navbar")
+          .on("mouseenter", function (e) {
+            $(this).addClass("show hover");
+          }).on("mouseleave", function (e) {
+            $(this).removeClass("hover");
+            if ($(window).scrollTop() > 100) {
+              $(this).removeClass("show");
+            }
+          });
+      } else {
+        $(".nav-handle").on("click", function(e) {
+          $(this).parents(".navbar").toggleClass("show hover");
+        });
+        $(".header-container").css("height", windowInnerHeight() / 2 + "px");
+      }
+      {/block:IndexPage}
+
       $(window).scroll(function() {
         var height = $(this).scrollTop();
 
         // Photo/PhotoSet
         $(".photo-container").each(function() {
           {block:IndexPage}
-            var relativeTop = height - $(this).parents(".photo-block").offset().top;
-            if (-window.innerHeight <= relativeTop && window.innerHeight >= relativeTop) {
-              updatePhotoPosition($(this));
-            } else {
-              if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 400 >= relativeTop) {
-                if ($(this).css("background-image") === "none") {
-                  $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")")
-                }
-              } else {
-                if ($(this).css("background-image") !== "none") {
-                  $(this).css("background-image", "none");
-                }
-              }
+          var relativeTop = height - $(this).offset().top;
+          var url = $(this).attr("data-shiki-photoURL");
+          if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 400 >= relativeTop) {
+            if ($(this).css("background-image") === "none") {
+              $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
+              setPhotoCSS($(this));
+              appearingPosts[url] = $(this);
             }
+          } else {
+            if ($(this).css("background-image") !== "none") {
+              delete appearingPosts[url];
+              $(this).css("background-image", "none");
+            }
+          }
           {/block:IndexPage}
           {block:PermalinkPage}
             if ($(this).css("background-image") === "none") {
               $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")")
             }
           {/block:PermalinkPage}
-        });
-
-        $(".hover-area").on("mouseenter", function(e) {
-          $(this).addClass("show hover");
-        }).on("mouseleave", function(e) {
-          if ($(this).hasClass("navbar")) {
-            $(this).removeClass("hover");
-            if ($(window).scrollTop() > 100) {
-              $(this).removeClass("show");
-            }
-          } else {
-            $(this).removeClass("show hover");
-          }
         });
 
         // YouTube
@@ -1624,61 +1691,59 @@
           $(this).css("padding-top", (aspect * 100) + "%");
         });
 
-        // オートページャー
         {block:IndexPage}
-          if (!nowFetching && !finalPage && $(document).height() - (height + window.innerHeight) < 1000) {
-            if (nextPageURL.length !== 0) {
-              nowFetching = true;
-              var url = nextPageURL.shift();
-              fetchNextPage(url).then(function(data) {
-                $(data).find("article").appendTo("#main");
-                nextPageURL = [];
-                $(data).find(".next-url").each(function() {
-                  nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
-                });
-                nowFetching = false;
-                $(window).trigger("resize");
-              }, function(data) {
-                // fetch next nextPageURL
-                nowFetching = false;
-                $(window).trigger("scroll");
-              });
-            }
-            else {
-              $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
-              finalPage = true;
+        // Photo背景アップデート
+        for (k in appearingPosts) {
+          var $v = appearingPosts[k];
+          var relativeTop = height - $v.parents(".photo-block").offset().top;
+          var areaHeight = parseInt($v.attr("data-shiki-areaHeight"));
+          if ((relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) >= 0
+                  && (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) <= 1) {
+            if (isDesktop) {
+              updatePhotoPosition($v);
             }
           }
+        }
+
+        // オートページャー
+        if (!nowFetching && !finalPage && $(document).height() - (height + window.innerHeight) < 1000) {
+          if (nextPageURL.length !== 0) {
+            nowFetching = true;
+            var url = nextPageURL.shift();
+            fetchNextPage(url).then(function(data) {
+              $(data).find("article").appendTo("#main");
+              nextPageURL = [];
+              $(data).find(".next-url").each(function() {
+                nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
+              });
+              nowFetching = false;
+              $(window).trigger("resize");
+            }, function(data) {
+              // fetch next nextPageURL
+              nowFetching = false;
+              $(window).trigger("scroll");
+            });
+          }
+          else {
+            $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
+            finalPage = true;
+          }
+        }
         {/block:IndexPage}
 
-        $(".hover-area").on("mouseenter", function(e) {
-          $(this).addClass("show hover");
-        }).on("mouseleave", function(e) {
-          if ($(this).hasClass("navbar")) {
-            $(this).removeClass("hover");
-            if ($(window).scrollTop() > 100) {
-              $(this).removeClass("show");
-            }
-          } else {
-            $(this).removeClass("show hover");
-          }
-        });
-
         // ヘッダー移動
-        var $navbar = $(".navbar");
-        if (height <= 100) {
-          $navbar.addClass("show");
-        } else if (!$navbar.hasClass("hover")) {
-          $navbar.removeClass("show");
+        if (isDesktop) {
+          var $navbar = $(".navbar");
+          if (height <= 100) {
+            $navbar.addClass("show");
+          } else if (!$navbar.hasClass("hover")) {
+            $navbar.removeClass("show");
+          }
         }
       });
 
       $(window).resize(function() {
         $(window).trigger("scroll");
-
-        $(".photo-container").each(function() {
-          setPhotoCSS($(this));
-        });
       });
 
       $(".next-url").each(function() {
@@ -1688,14 +1753,6 @@
       // ↑All preparations have done↑
       $(document).ready(function() {
         $(window).trigger("resize");
-        var update = function() {
-          updateQueue.forEach(function(element) {
-            element.object.css("background-position", element.css);
-          });
-          updateQueue = [];
-          setTimeout(update, updateFlame);
-        };
-        update();
       });
 
     });
