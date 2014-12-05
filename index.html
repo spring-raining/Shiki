@@ -121,6 +121,13 @@
       border-left: rgba(33, 33, 33, 0.25) solid 4px;
     }
 
+    @media screen and (max-width: 480px) {
+      blockquote {
+        margin-top: 0;
+        padding: 12px 0 12px 12px;
+      }
+    }
+
     ul {
       margin-before: 14px;
       margin-after: 14px;
@@ -164,7 +171,7 @@
 
     @media screen and (max-width: 480px) {
       .entry-container {
-        padding: 64px 0;
+        padding: 48px 0;
       }
     }
 
@@ -432,9 +439,14 @@
     }
 
   {block:IndexPage}
-    article.photo .photo-container {
+    body.desktop article.photo .photo-container {
       width: 10000px;
       height: 10000px;
+    }
+
+    body.mobile article.photo .photo-container {
+      width: 100%;
+      height: 0;
     }
 
     article.photo .photo-block {
@@ -1570,27 +1582,41 @@
 
       var setPhotoCSS = function($photo) {
         var heightInfluenceParam = 0.6;
+        var mobileHeightInfluenceParam = 0.7;
         var photoAspect = $photo.attr("data-shiki-photoHeight") / $photo.attr("data-shiki-photoWidth");
         $photo.attr("data-shiki-photoAspect", photoAspect);
 
         {block:IndexPage}
-        var areaHeight = windowInnerWidth() * photoAspect * heightInfluenceParam;
-        if (areaHeight > windowInnerHeight()) {
-          areaHeight -= (areaHeight - windowInnerHeight()) * (1 - heightInfluenceParam);
-        }
-        var areaAspect = areaHeight / windowInnerWidth();
-        $photo.css("background-size", (photoAspect > areaAspect)?
-                                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
-                .attr("data-shiki-areaHeight", areaHeight);
-        $photo.parents(".photo-block").css("height", areaHeight + "px");
-
+        var areaHeight, areaAspect;
         if (isDesktop) {
+          areaHeight = windowInnerWidth() * photoAspect * heightInfluenceParam;
+          if (areaHeight > windowInnerHeight()) {
+            areaHeight -= (areaHeight - windowInnerHeight()) * (1 - heightInfluenceParam);
+          }
+          areaAspect = areaHeight / windowInnerWidth();
+          $photo.css("background-size", (photoAspect > areaAspect) ?
+                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
+                .attr("data-shiki-areaHeight", areaHeight);
+          $photo.parents(".photo-block")
+                .css("height", areaHeight + "px");
+
           $photo.parents(".entry-container").children(".hover-area")
-            .on("mouseenter", function (e) {
-              $(this).addClass("show hover");
-            }).on("mouseleave", function (e) {
-              $(this).removeClass("show hover");
-            });
+                  .on("mouseenter", function (e) {
+                    $(this).addClass("show hover");
+                  }).on("mouseleave", function (e) {
+                    $(this).removeClass("show hover");
+                  });
+        } else {
+          areaHeight = (windowInnerHeight() * (1 - mobileHeightInfluenceParam)) +
+                        (windowInnerWidth() * photoAspect * mobileHeightInfluenceParam);
+          areaAspect = areaHeight / windowInnerWidth();
+          $photo
+                .css("height", areaHeight + "px")
+                .css("background-size", (photoAspect > areaAspect) ?
+                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
+                .css("background-position", "center")
+                .attr("data-shiki-areaHeight", areaHeight);
+          console.log (areaHeight);
         }
         {/block:IndexPage}
 
@@ -1671,7 +1697,7 @@
           {block:IndexPage}
           var relativeTop = height - $(this).offset().top;
           var url = $(this).attr("data-shiki-photoURL");
-          if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 400 >= relativeTop) {
+          if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 1600 >= relativeTop) {
             if ($(this).css("background-image") === "none") {
               $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
               setPhotoCSS($(this));
