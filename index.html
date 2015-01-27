@@ -461,8 +461,41 @@
       padding: 0;
     }
 
+    article.photo .permalink-photo-container {
+      margin: 0 auto;
+      padding: 0 10px;
+      min-height: 300px;
+    }
+
+    article.photo .permalink-photo-spacer {
+      vertical-align: middle;
+      display: table-cell;
+      height: 300px;
+    }
+
+    article.photo .permalink-photo-container img {
+      border-radius: 6px;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 480px) {
+      article.photo .permalink-photo-container {
+        padding: 0;
+        min-height: 200px;
+      }
+
+      article.photo .permalink-photo-spacer {
+        height: 200px;
+      }
+
+      article.photo .permalink-photo-container img {
+        border-radius: 0;
+      }
+    }
+
     article.photo .photoset-iframe-container {
       max-width: 700px;
+      min-height: 300px;
       margin: 0 auto;
     }
 
@@ -891,6 +924,7 @@
           <!-- post: 画像 -->
           {block:Photo}
             <div class="entry-container">
+              {block:IndexPage}
               <div class="photo-block">
                 <a href="{Permalink}" class="photo-container-link" {Target}>
                   <div class="photo-container"
@@ -901,6 +935,17 @@
                   </div>
                 </a>
               </div>
+              {/block:IndexPage}
+
+              {block:PermalinkPage}
+              <div class="permalink-photo-container" style="max-width: {PhotoWidth-HighRes}px; height: {PhotoHeight-HighRes}ps">
+                <div class="permalink-photo-spacer">
+                  {LinkOpenTag}
+                    <img style="width: {PhotoWidth-HighRes}px;" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                  {LinkCloseTag}
+                </div>
+              </div>
+              {/block:PermalinkPage}
 
               <div class="hover-area">
               <div class="entry-block">
