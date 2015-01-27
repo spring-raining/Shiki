@@ -445,7 +445,7 @@
       height: 100px;
     }
 
-    article.post * {
+    body.page-index article.post * {
       overflow-x: hidden;
     }
 
@@ -1628,7 +1628,10 @@
         // photoset iframe内CSS変更
         $("iframe.photoset").load(function() {
           console.log("load");
-          $(this).contents().find(".photoset_row").css("border-radius", "6px");
+          $(this).contents().find(".photoset_row")
+                  .css("width", "680px")
+                  .css("margin", "10px")
+                  .css("border-radius", "6px");
         });
         {/block:PermalinkPage}
       };
