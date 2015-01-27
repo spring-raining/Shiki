@@ -461,6 +461,11 @@
       padding: 0;
     }
 
+    article.photo .photoset-iframe-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
     /* はてブChrome拡張用 */
     article.photo a.photo-container-link + .hBookmark-widget-counter {
       margin: 0;
@@ -972,6 +977,7 @@
           <!-- post: フォトセット -->
           {block:Photoset}
             <div class="entry-container">
+              {block:IndexPage}
               {block:Photos}
                 <div class="photo-block photoset">
                   <a href="{Permalink}" class="photo-container-link" {Target}>
@@ -986,6 +992,13 @@
                   </a>
                 </div>
               {/block:Photos}
+              {/block:IndexPage}
+
+              {block:PermalinkPage}
+                <div class="photoset-iframe-container">
+                  {Photoset}
+                </div>
+              {/block:PermalinkPage}
 
               <div class="hover-area">
               <div class="entry-block">
@@ -1610,7 +1623,17 @@
       var firstInnerHeight = window.innerHeight;
       var firstInnerWidth = window.innerWidth;
 
-      var setPhotoCSS = function($photo) {
+      var initializeCSS = function() {
+        {block:PermalinkPage}
+        // photoset iframe内CSS変更
+        $("iframe.photoset").load(function() {
+          console.log("load");
+          $(this).contents().find(".photoset_row").css("border-radius", "6px");
+        });
+        {/block:PermalinkPage}
+      };
+
+      var updatePhotoCSS = function($photo) {
         var heightInfluenceParam = 0.6;
         var mobileHeightInfluenceParam = 0.7;
         var photoAspect = $photo.attr("data-shiki-photoHeight") / $photo.attr("data-shiki-photoWidth");
@@ -1727,7 +1750,7 @@
       {block:PermalinkPage}
       $(".photo-container").each(function() {
         $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
-        setPhotoCSS($(this));
+        updatePhotoCSS($(this));
       });
       {/block:PermalinkPage}
 
@@ -1742,7 +1765,7 @@
           if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 1600 >= relativeTop) {
             if ($(this).css("background-image") === "none") {
               $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
-              setPhotoCSS($(this));
+              updatePhotoCSS($(this));
               appearingPosts[url] = $(this);
             }
           } else {
@@ -1823,7 +1846,7 @@
         $(window).trigger("scroll");
         {block:PermalinkPage}
         $(".photo-container").each(function() {
-          setPhotoCSS($(this));
+          updatePhotoCSS($(this));
         });
         {/block:PermalinkPage}
       });
@@ -1834,6 +1857,7 @@
 
       // ↑All preparations have done↑
       $(document).ready(function() {
+        initializeCSS();
         $(window).trigger("resize");
       });
 
