@@ -157,13 +157,14 @@
 
     .button {
       display: inline-block;
-      padding: 10px;
-      min-width: 40px;
-      height: 40px;
+      padding: 8px;
+      min-width: 36px;
+      height: 36px;
       border-radius: 30px;
       text-align: center;
-      line-height: 40px;
-      color: #fff;
+      line-height: 36px;
+      font-size: 22px;
+      color: #ffffff;
       background-color: {AccentColor};
     }
 
@@ -219,10 +220,10 @@
 
     .like-and-reblog-buttons li {
       display: inline-block;
-      padding: 10px;
-      margin-right: 20px;
-      width: 40px;
-      height: 40px;
+      padding: 8px;
+      margin: 0 12px 0 0;
+      width: 36px;
+      height: 36px;
       border-radius: 30px;
     }
 
@@ -351,15 +352,6 @@
       display: inline-block;
     }
 
-    .entry-block .like-and-reblog-buttons {
-      margin: 0;
-      height: 0;
-    }
-
-    .entry-block .like-and-reblog-buttons li {
-      margin-top: -20px;
-    }
-
     header {
       position: relative;
     }
@@ -454,13 +446,6 @@
 
     body.page-index article.post * {
       overflow-x: hidden;
-    }
-
-    article.text .like-and-reblog-buttons {
-      position: relative;
-      margin: 0;
-      height: 0;
-      top: -66px;
     }
 
     article.photo .entry-container {
@@ -606,13 +591,6 @@
       vertical-align: -0.4em;
     }
 
-    article.quote .like-and-reblog-buttons {
-      position: relative;
-      margin: 0;
-      height: 0;
-      top: -66px;
-    }
-
     article.link .entry-header {
       margin-top: 20px;
     }
@@ -641,22 +619,8 @@
       font-size: smaller;
     }
 
-    article.link .like-and-reblog-buttons {
-      position: relative;
-      margin: 0;
-      height: 0;
-      top: -66px;
-    }
-
     article.chat li {
       list-style: none;
-    }
-
-    article.chat .like-and-reblog-buttons {
-      position: relative;
-      margin: 0;
-      height: 0;
-      top: -66px;
     }
 
     article.video .entry-container {
@@ -741,20 +705,53 @@
       vertical-align: -0.4em;
     }
 
-    article.answer .like-and-reblog-buttons {
-      position: relative;
-      margin: 0;
-      height: 0;
-      top: -66px;
-    }
-
     .pagenation-permalink {
       margin: 30px 0 80px;
       text-align: center;
     }
 
     .pagenation-permalink > * {
-      margin: 0 10px;
+      margin: 0 12px 0 0;
+    }
+
+    body.desktop .permalink-controller {
+      position: fixed;
+      right: 7vw;
+      bottom: 0;
+      z-index: 100;
+      opacity: 0.2;
+      transition: 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition-property: opacity;
+    }
+
+    body.mobile .permalink-controller {
+      margin: 36px 0 48px 0;
+    }
+
+    body.desktop .permalink-controller:hover {
+      opacity: 1;
+    }
+
+    .permalink-controller > * {
+      margin: 0 0 16px 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      body.desktop .permalink-controller {
+        right: 0;
+      }
+
+      .button {
+        min-width: 30px;
+        height: 30px;
+        line-height: 30px;
+      }
+
+      .like-and-reblog-buttons li {
+        padding: 5px;
+      }
     }
 
     {CustomCSS}
@@ -856,12 +853,12 @@
           <!-- post: テキスト -->
           {block:Text}
             <div class="entry-container">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               <header class="entry-header">
                 {block:Title}
@@ -1015,12 +1012,12 @@
                   </div>
                 </footer>
 
-                <div class="entry-text">
+                {block:IndexPage}
                   <ul class="like-and-reblog-buttons">
                     <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                     <li class="like-button">{LikeButton color="white" size="24"}</li>
                   </ul>
-                </div>
+                {/block:IndexPage}
               </div>
               </div>
             </div>
@@ -1113,12 +1110,12 @@
                   </div>
                 </footer>
 
-                <div class="entry-text">
+                {block:IndexPage}
                   <ul class="like-and-reblog-buttons">
                     <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                     <li class="like-button">{LikeButton color="white" size="24"}</li>
                   </ul>
-                </div>
+                {/block:IndexPage}
               </div>
               </div>
             </div>
@@ -1127,12 +1124,12 @@
           <!-- post: 引用 -->
           {block:Quote}
             <div class="entry-container {Length}">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               <div class="entry-text body">
                 <blockquote>{Quote}</blockquote>
@@ -1189,12 +1186,12 @@
           <!-- post: リンク -->
           {block:Link}
             <div class="entry-container">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               <header class="entry-header">
                 <div class="entry-text">
@@ -1269,12 +1266,12 @@
           <!-- post: チャット -->
           {block:Chat}
             <div class="entry-container">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               {block:Title}
                 <header class="entry-header">
@@ -1417,12 +1414,12 @@
                   </div>
                 </footer>
 
-                <div class="entry-text">
+                {block:IndexPage}
                   <ul class="like-and-reblog-buttons">
                     <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                     <li class="like-button">{LikeButton color="white" size="24"}</li>
                   </ul>
-                </div>
+                {/block:IndexPage}
               </div>
             </div>
           {/block:Video}
@@ -1430,12 +1427,12 @@
           <!-- post: オーディオ -->
           {block:Audio}
             <div class="entry-container">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               {AudioPlayer}
 
@@ -1503,12 +1500,12 @@
           <!-- post: Answer -->
           {block:Answer}
             <div class="entry-container">
-              <div class="entry-text">
+              {block:IndexPage}
                 <ul class="like-and-reblog-buttons">
                   <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
                   <li class="like-button">{LikeButton color="white" size="24"}</li>
                 </ul>
-              </div>
+              {/block:IndexPage}
 
               <div class="entry-text">
                 <div class="question bubble">
@@ -1568,43 +1565,59 @@
             </div>
           {/block:Answer}
 
-          <!-- パーマリンクだけソーシャルボタン出す -->
           {block:PermalinkPage}
-            <div class="entry-text">
-              <ul class="social-buttons">
-                {block:IfEnableTweetButton}
-                <li class="social-button">
-                  <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
-                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                </li>
-                {/block:IfEnableTweetButton}
-                {block:IfEnableBookmarkButton}
-                <li class="social-button">
-                  <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-                  <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-                </li>
-                {/block:IfEnableBookmarkButton}
-                {block:IfEnableLikeButton}
-                <li class="social-button">
-                  <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-                </li>
-                {/block:IfEnableLikeButton}
-                {block:IfEnablePlus1Button}
-                <li class="social-button">
-                  <div class="g-plusone" data-size="medium"></div>
-                  <script type="text/javascript">
-                    window.___gcfg = {lang: 'ja'};
+            <div class="permalink-controller">
+              <!-- パーマリンクのページャ -->
+              {block:PermalinkPagination}
+              <div class="pagenation pagenation-permalink">
+                {block:NextPost}
+                <a href="{NextPost}" class="button next" rel="next">&#x25C0;</a>
+                {/block:NextPost}
+                {block:PreviousPost}
+                <a href="{PreviousPost}" class="button prev" rel="prev">&#x25B6;</a>
+                {/block:PreviousPost}
+              </div>
+              {/block:PermalinkPagination}
 
-                    (function() {
-                      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                      po.src = 'https://apis.google.com/js/plusone.js';
-                      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                    })();
-                  </script>
-                </li>
-                {/block:IfEnablePlus1Button}
+              <ul class="like-and-reblog-buttons">
+                <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+                <li class="like-button">{LikeButton color="white" size="20"}</li>
               </ul>
             </div>
+
+            <ul class="entry-text social-buttons">
+              {block:IfEnableTweetButton}
+              <li class="social-button">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+              </li>
+              {/block:IfEnableTweetButton}
+              {block:IfEnableBookmarkButton}
+              <li class="social-button">
+                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+                <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+              </li>
+              {/block:IfEnableBookmarkButton}
+              {block:IfEnableLikeButton}
+              <li class="social-button">
+                <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+              </li>
+              {/block:IfEnableLikeButton}
+              {block:IfEnablePlus1Button}
+              <li class="social-button">
+                <div class="g-plusone" data-size="medium"></div>
+                <script type="text/javascript">
+                  window.___gcfg = {lang: 'ja'};
+
+                  (function() {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                  })();
+                </script>
+              </li>
+              {/block:IfEnablePlus1Button}
+            </ul>
           {/block:PermalinkPage}
 
           {block:PostNotes}
@@ -1618,18 +1631,6 @@
       {/block:Posts}
 
     </div>
-
-    <!-- パーマリンクのページャ -->
-    {block:PermalinkPagination}
-      <div class="pagenation pagenation-permalink">
-        {block:NextPost}
-          <a href="{NextPost}" class="button next" rel="next">&#x25C0;</a>
-        {/block:NextPost}
-        {block:PreviousPost}
-          <a href="{PreviousPost}" class="button prev" rel="prev">&#x25B6;</a>
-        {/block:PreviousPost}
-      </div>
-    {/block:PermalinkPagination}
 
     <!-- ページごとのページャ -->
     {block:Pagination}
