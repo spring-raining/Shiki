@@ -754,6 +754,15 @@
       }
     }
 
+    .notes-container * {
+      list-style-type: none;
+    }
+
+    .notes-container img.avatar {
+      height: 12px;
+      border-radius: 12px;
+    }
+
     {CustomCSS}
   </style>
 
@@ -1622,8 +1631,7 @@
 
           {block:PostNotes}
             <div class="entry-text">
-              <h3 class="notecount-header">{NoteCount} Notes</h3>
-              <div class="notecontainer">{PostNotes}</div>
+              <div class="notes-container">{PostNotes}</div>
             </div>
           {/block:PostNotes}
         </article>
