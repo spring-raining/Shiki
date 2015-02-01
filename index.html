@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!--
-  Shiki 2.03
+  Shiki 2.04
     created by
       spring-raining (http://harusamex.com)
       amaya-382
@@ -50,44 +50,44 @@
   <meta property="og:image" content="{PortraitURL-128}" />
   <!-- Twitter tags -->
   <meta name="twitter:image" content="{PortraitURL-128}" />
-   <!-- photo だったら og-image は photoURL にする -->
+  <!-- photo だったら og-image は photoURL にする -->
   {block:PermalinkPage}
-    {block:Posts}
-      {block:Photo}
-        <meta property="og:image" content="{PhotoURL-HighRes}" />
-      {/block:Photo}
-      {block:Photoset}
-        {block:Photos}
-        <meta property="og:image" content="{PhotoURL-HighRes}" />
-        {/block:Photos}
-      {/block:Photoset}
-    {/block:Posts}
+  {block:Posts}
+  {block:Photo}
+  <meta property="og:image" content="{PhotoURL-HighRes}" />
+  {/block:Photo}
+  {block:Photoset}
+  {block:Photos}
+  <meta property="og:image" content="{PhotoURL-HighRes}" />
+  {/block:Photos}
+  {/block:Photoset}
+  {/block:Posts}
   {/block:PermalinkPage}
   <meta property="og:site_name" content="{Title}" />
   {block:Description}
-    <meta property="og:description" content="{MetaDescription}">
+  <meta property="og:description" content="{MetaDescription}">
   {/block:Description}
   {block:IfGoogleAuthor}
-    <link rel="author" href="{text:Google Author}" />
+  <link rel="author" href="{text:Google Author}" />
   {/block:IfGoogleAuthor}
   {block:IndexPage}
-    <link rel="canonical" href="{BlogURL}"/>
-    <meta property="og:url" content="{BlogURL}" />
+  <link rel="canonical" href="{BlogURL}"/>
+  <meta property="og:url" content="{BlogURL}" />
   {/block:IndexPage}
   {block:PermalinkPage}
-    <link rel="canonical" href="{Permalink}"/>
-    <meta property="og:url" content="{Permalink}" />
+  <link rel="canonical" href="{Permalink}"/>
+  <meta property="og:url" content="{Permalink}" />
   {/block:PermalinkPage}
 
   <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
   <!-- Google Analytics -->
   <script type="text/javascript">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', '{text:Google Analytics ID}', 'auto');
@@ -105,15 +105,17 @@
     body {
       color: #333;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.5em;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       background-color: {BackgroundColor};
-      /*color: {color:Text};*/
       font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
     }
 
     a {
-      color: {AccentColor};
-      text-decoration: none;
+    color: {AccentColor};
+    text-decoration: none;
     }
 
     a:hover {
@@ -144,11 +146,11 @@
     }
 
     h1.blog-title {
-      font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
-      font-weight: {TitleFontWeight};
-      color: {TitleColor};
-      font: bold 40px;
-      margin-bottom: 15px;
+    font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
+    font-weight: {TitleFontWeight};
+    color: {TitleColor};
+    font: bold 40px;
+    margin-bottom: 15px;
     }
 
     .blog-description {
@@ -165,7 +167,7 @@
       line-height: 36px;
       font-size: 22px;
       color: #ffffff;
-      background-color: {AccentColor};
+    background-color: {AccentColor};
     }
 
     .button:hover {
@@ -177,13 +179,8 @@
     }
 
     .entry-container {
-      padding: 108px 0;
-    }
-
-    @media screen and (max-width: 480px) {
-      .entry-container {
-        padding: 48px 0;
-      }
+      padding: 0;
+      margin: 0;
     }
 
     .entry-block {
@@ -211,6 +208,10 @@
     .caption p {
       margin: 0;
       padding: 0.7em 0.5em;
+    }
+
+    .lead {
+      line-height: 2em;
     }
 
     .like-and-reblog-buttons {
@@ -261,8 +262,27 @@
     }
 
     .nav li.shiki-logo {
-        height: 18px;
-        margin-top: 0px;
+      height: 18px;
+      margin-top: 0px;
+    }
+
+    .permalink-spacer {
+      vertical-align: middle;
+      display: table-cell;
+      height: 650px;
+      width: 100vw;
+    }
+
+    @media screen and (max-height: 1000px) {
+      .permalink-spacer {
+        height: 400px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .permalink-spacer {
+        height: 300px;
+      }
     }
 
     body.desktop .nav li.mobile {
@@ -305,9 +325,12 @@
       vertical-align: middle;
     }
 
-    .note-info .favicon {
+    .note-info img.avatar,
+    .notes-container img.avatar {
       margin-right: 4px;
-      margin-bottom: -2px;
+      margin-bottom: -1px;
+      height: 12px;
+      border-radius: 12px;
     }
 
     .note-info span {
@@ -318,7 +341,7 @@
       height: 1em;
       margin-right: 4px;
       margin-bottom: -2px;
-      fill: {AccentColor};
+    fill: {AccentColor};
     }
 
     ol.notes {
@@ -337,11 +360,11 @@
     }
 
     .reblog-button {
-      background-color: {AccentColor};
+    background-color: {AccentColor};
     }
 
     .like-button {
-      background-color: {AccentColor};
+    background-color: {AccentColor};
     }
 
     .pull-right {
@@ -429,9 +452,9 @@
       margin: 24px;
       width: 14px;
       height: 14px;
-      background-color: {AccentColor};
-      opacity: 0.8;
-      border-radius: 15px;
+    background-color: {AccentColor};
+    opacity: 0.8;
+    border-radius: 15px;
     }
 
     header .title-block {
@@ -456,13 +479,6 @@
     article.photo .permalink-photo-container {
       margin: 0 auto;
       padding: 0 10px;
-      min-height: 300px;
-    }
-
-    article.photo .permalink-photo-spacer {
-      vertical-align: middle;
-      display: table-cell;
-      height: 300px;
     }
 
     article.photo .permalink-photo-container img {
@@ -473,11 +489,6 @@
     @media screen and (max-width: 480px) {
       article.photo .permalink-photo-container {
         padding: 0;
-        min-height: 200px;
-      }
-
-      article.photo .permalink-photo-spacer {
-        height: 200px;
       }
 
       article.photo .permalink-photo-container img {
@@ -497,7 +508,7 @@
       padding: 0;
     }
 
-  {block:IndexPage}
+    {block:IndexPage}
     body.desktop article.photo .photo-container {
       width: 10000px;
       height: 10000px;
@@ -535,6 +546,8 @@
       opacity: 0.95;
       transform: translate3d(50vw, 0, 0);
       transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+      -webkit-font-smoothing: subpixel-antialiased;
+      -moz-osx-font-smoothing: auto;
     }
 
     body.desktop article.photo .entry-block::before {
@@ -554,7 +567,11 @@
       background-color: rgba(33, 33, 33, 0.7);
     }
 
-    body.mobile .entry-block {
+    body.mobile .desktop-only {
+      display: none;
+    }
+
+    body.desktop .mobile-only {
       display: none;
     }
 
@@ -562,23 +579,47 @@
       line-height: 48px;
       padding-right: 480px;
     }
-  {/block:IndexPage}
+
+    .entry-container {
+      padding: 40px 0;
+      margin: 100px 0;
+    }
+
+    @media screen and (max-width: 480px) {
+      .entry-container {
+        margin: 20px 0;
+      }
+    }
+
+    article.photo .entry-container {
+      margin: 0;
+      padding: 0;
+    }
+    {/block:IndexPage}
+
+    article.quote blockquote {
+      overflow-y: hidden;
+    }
 
     article.quote .short blockquote {
-      font-size: 2.4em;
+      font-size: 2.2em;
+      line-height: 2em;
     }
 
     article.quote .medium blockquote {
-      font-size: 1.8em;
+      font-size: 2.2em;
+      line-height: 1.6em;
     }
 
     article.quote .long blockquote {
       font-size: 1.2em;
+      line-height: 1.8em;
     }
 
     @media screen and (max-width: 480px) {
       article.quote .long blockquote {
         font-size: 1.1em;
+        line-height: 1.9em;
       }
     }
 
@@ -600,14 +641,14 @@
       width: auto;
       padding: 2.5em;
       color: #fff;
-      background-color: {AccentColor};
-      text-align: center;
-      border-radius: 30px;
+    background-color: {AccentColor};
+    text-align: center;
+    border-radius: 30px;
     }
 
     article.link a.link-url:hover {
       text-decoration: none;
-      background-color: {AccentColor};
+    background-color: {AccentColor};
     }
 
     article.link .link-title {
@@ -643,12 +684,12 @@
     }
 
     article.video .entry-block {
-      {block:IndexPage}
-        position: absolute;
-      {/block:IndexPage}
-      top: 0;
-      left: 0;
-      width: 100%;
+    {block:IndexPage}
+    position: absolute;
+    {/block:IndexPage}
+    top: 0;
+    left: 0;
+    width: 100%;
     }
 
     article.audio .entry-container {
@@ -671,12 +712,12 @@
     }
 
     article.audio .entry-block {
-      {block:IndexPage}
-        position: absolute;
-      {/block:IndexPage}
-      top: 0;
-      left: 0;
-      width: 100%;
+    {block:IndexPage}
+    position: absolute;
+    {/block:IndexPage}
+    top: 0;
+    left: 0;
+    width: 100%;
     }
 
     article.answer .question {
@@ -754,13 +795,18 @@
       }
     }
 
+    .notes-container {
+      margin: 50px 0;
+    }
+
     .notes-container * {
       list-style-type: none;
     }
 
-    .notes-container img.avatar {
-      height: 12px;
-      border-radius: 12px;
+    @media screen and (max-width: 480px) {
+      .notes-container {
+        margin: 0;
+      }
     }
 
     {CustomCSS}
@@ -769,1175 +815,1189 @@
 </head>
 <body class="{block:IndexPage}page-index{/block:IndexPage}{block:PermalinkPage}page-permalink page-{PostID}{/block:PermalinkPage}">
 
-  <div id="container">
+<div id="container">
 
-    <!-- インデックスページ ヘッダー -->
-    {block:IndexPage}
-      <header id="header">
-        <div class="header-container" {block:IfHeaderImage}style="background-image: url({HeaderImage});"{/block:IfHeaderImage}></div>
+  <!-- インデックスページ ヘッダー -->
+  {block:IndexPage}
+  <header id="header">
+    <div class="header-container" {block:IfHeaderImage}style="background-image: url({HeaderImage});"{/block:IfHeaderImage}></div>
 
-        <div class="hover-area navbar">
-          <nav class="nav" role="navigation">
-            <ul>
-              {block:HasPages}
-                {block:Pages}
-                <li>
-                  <a href="{URL}" {Target}>{Label}</a>
-                </li>
-                {/block:Pages}
-              {/block:HasPages}
-              <li>
-                <a href="/archive">Archive</a>
-              </li>
-              <li class="pull-right shiki-logo">
-                <a href="http://shikitheme.tumblr.com" {Target}>
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="35px" height="60px" viewBox="0 0 50 24" enable-background="new 0 0 50 24" xml:space="preserve"><g><path fill="#F2B3BF" d="M3.855,20.054c-0.172-0.003-0.346-0.009-0.521-0.016c-0.745-0.028-0.986-0.04-1.057-0.045l-0.146-0.01l-0.11-2.209l0.206,0.023c0.119,0.014,0.473,0.038,1.023,0.069c0.24,0.014,0.502,0.022,0.782,0.026c0.368,0.005,0.709-0.019,1.138-0.026c0.457-0.009,1.055-0.083,1.778-0.219c0.717-0.134,1.272-0.3,1.648-0.493c0.489-0.253,0.865-0.555,1.118-0.898c0.25-0.339,0.367-0.757,0.356-1.278c-0.011-0.553-0.15-1.023-0.415-1.396c-0.269-0.381-0.723-0.753-1.349-1.105c-0.414-0.235-0.957-0.502-1.614-0.792c-0.669-0.296-1.282-0.607-1.819-0.925C3.944,10.22,3.266,9.612,2.857,8.951C2.447,8.289,2.23,7.537,2.214,6.717C2.197,5.88,2.366,5.139,2.716,4.514c0.346-0.618,0.806-1.157,1.368-1.603c0.571-0.446,1.282-0.79,2.11-1.022c0.821-0.23,1.748-0.357,2.754-0.377c0.416-0.008,0.843-0.008,1.27,0.002c0.133,0.002,0.267,0.006,0.4,0.011c0.571,0.02,0.888,0.034,0.97,0.041l0.137,0.013l0.202,2.211l-0.207-0.017c-0.079-0.006-0.401-0.028-0.964-0.064c-0.252-0.017-0.537-0.027-0.845-0.031C9.542,3.672,9.19,3.695,8.746,3.704C8.267,3.713,7.766,3.778,7.258,3.895c-0.502,0.116-0.947,0.29-1.321,0.516C5.612,4.607,5.333,4.88,5.109,5.222c-0.222,0.34-0.326,0.726-0.316,1.179C4.801,6.804,4.927,7.18,5.178,7.551C5.43,7.922,5.91,8.311,6.605,8.704c0.358,0.209,0.842,0.453,1.435,0.725c0.602,0.275,1.201,0.579,1.781,0.902c0.91,0.513,1.61,1.119,2.08,1.802c0.475,0.69,0.725,1.492,0.743,2.385c0.019,0.936-0.189,1.771-0.618,2.487c-0.427,0.711-1.016,1.3-1.75,1.749c-0.664,0.407-1.439,0.726-2.304,0.943c-0.86,0.218-1.828,0.338-2.876,0.359C4.699,20.064,4.281,20.063,3.855,20.054z"/><path fill="#B5B0CA" d="M23.069,20l0.011-0.213c0.008-0.168,0.011-0.945,0.023-1.922c0.013-0.982-0.011-1.765-0.011-2.1c0-0.366-0.002-0.737-0.007-1.451c-0.004-0.711-0.011-1.237-0.02-1.565c-0.024-0.743-0.194-1.275-0.505-1.578c-0.292-0.285-0.835-0.429-1.614-0.429c-0.458,0-1.066,0.116-1.808,0.344c-0.712,0.219-1.474,0.557-2.266,0.923L16.958,23h-2.835l0.009-0.318c0.009-0.277,0.05-4.12,0.063-6.045c0.013-1.932,0.02-3.555,0.02-4.802c0-0.817-0.002-1.852-0.006-3.096c-0.004-1.247-0.02-4.6-0.046-6.593L14.157,2h2.771l-0.052,8.219c1.054-0.455,1.945-0.883,2.654-1.076c0.833-0.227,1.563-0.392,2.17-0.392c1.217,0,2.213,0.289,2.958,0.908c0.742,0.617,1.119,1.452,1.119,2.506c0,0.885-0.007,1.654-0.02,2.296c-0.013,0.641-0.02,0.996-0.02,1.394c0,0.64-0.021,1.43-0.004,2.196c0.017,0.774,0.021,1.496,0.03,1.739L25.771,20H23.069z"/><path fill="#9BB5AE" d="M28.031,20l0.022-0.363c0.006-0.08,0.016-0.554,0.032-2.227c0.013-1.348,0.02-2.491,0.02-3.37c0-0.771-0.002-1.879-0.007-2.804c-0.004-0.922-0.02-2.574-0.046-3.807L28.047,7h2.774l-0.005,0.425C30.799,8.503,30.783,10,30.771,10.94c-0.014,0.934-0.02,2.065-0.02,2.794c0,1.739-0.045,3.167-0.022,4.211c0.028,1.397,0.026,1.594,0.026,1.615L30.771,20H28.031z M28,4V2h3v2H28z"/><path fill="#A58C7A" d="M44.688,21.654c-1.647-1.75-6.269-6.487-8.734-9.08c0.371-0.361,0.676-0.65,1.589-1.543c1.129-1.102,2.237-2.011,3.296-3.033l0.243-0.235l-1.757-1.82l-0.243,0.258c-0.938,0.995-2.162,2.119-3.641,3.614c-0.003-1.138-0.004-2.16-0.004-2.359c0-0.232,0.002-0.971,0.007-2.207c0.004-1.225,0.02-2.295,0.046-3.23L35.496,2h-2.773l0.004,0.021c0.026,1.169,0.042,2.306,0.047,3.213c0.004,0.909,0.006,1.615,0.006,2.212c0,1.388-0.006,6.437-0.02,8.645c-0.017,2.743-0.048,3.447-0.054,3.55L32.686,20h2.851l-0.017-0.402c0-0.123-0.032-1.236-0.047-3.79c1.704,1.654,5.645,5.598,7.474,7.46l0.227,0.235l1.753-1.601L44.688,21.654z"/><path fill="#D98484" d="M45.335,20l0.022-0.395c0.006-0.078,0.016-0.567,0.032-2.24c0.013-1.348,0.02-2.499,0.02-3.377c0-0.771-0.002-1.884-0.007-2.808c-0.004-0.922-0.02-2.546-0.046-3.779L45.351,7h2.774L48.12,7.396c-0.018,1.077-0.033,2.561-0.046,3.5c-0.014,0.934-0.02,2.057-0.02,2.786c0,1.74-0.045,3.164-0.022,4.207c0.028,1.397,0.026,1.622,0.026,1.645L48.075,20H45.335z M45,4V2h3v2H45z"/></g></svg>
-                </a>
-              </li>
-              <li class="pull-right">
-                <a href="{BlogURL}" class="copyright">
-                  ©{Title}
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="nav-handle">
-            <span></span>
+<div class="hover-area navbar">
+  <nav class="nav" role="navigation">
+    <ul>
+      {block:HasPages}
+      {block:Pages}
+      <li>
+        <a href="{URL}" {Target}>{Label}</a>
+      </li>
+      {/block:Pages}
+      {/block:HasPages}
+      <li>
+        <a href="/archive">Archive</a>
+      </li>
+      <li class="pull-right shiki-logo">
+        <a href="http://shikitheme.tumblr.com" {Target}>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="35px" height="60px" viewBox="0 0 50 24" enable-background="new 0 0 50 24" xml:space="preserve"><g><path fill="#F2B3BF" d="M3.855,20.054c-0.172-0.003-0.346-0.009-0.521-0.016c-0.745-0.028-0.986-0.04-1.057-0.045l-0.146-0.01l-0.11-2.209l0.206,0.023c0.119,0.014,0.473,0.038,1.023,0.069c0.24,0.014,0.502,0.022,0.782,0.026c0.368,0.005,0.709-0.019,1.138-0.026c0.457-0.009,1.055-0.083,1.778-0.219c0.717-0.134,1.272-0.3,1.648-0.493c0.489-0.253,0.865-0.555,1.118-0.898c0.25-0.339,0.367-0.757,0.356-1.278c-0.011-0.553-0.15-1.023-0.415-1.396c-0.269-0.381-0.723-0.753-1.349-1.105c-0.414-0.235-0.957-0.502-1.614-0.792c-0.669-0.296-1.282-0.607-1.819-0.925C3.944,10.22,3.266,9.612,2.857,8.951C2.447,8.289,2.23,7.537,2.214,6.717C2.197,5.88,2.366,5.139,2.716,4.514c0.346-0.618,0.806-1.157,1.368-1.603c0.571-0.446,1.282-0.79,2.11-1.022c0.821-0.23,1.748-0.357,2.754-0.377c0.416-0.008,0.843-0.008,1.27,0.002c0.133,0.002,0.267,0.006,0.4,0.011c0.571,0.02,0.888,0.034,0.97,0.041l0.137,0.013l0.202,2.211l-0.207-0.017c-0.079-0.006-0.401-0.028-0.964-0.064c-0.252-0.017-0.537-0.027-0.845-0.031C9.542,3.672,9.19,3.695,8.746,3.704C8.267,3.713,7.766,3.778,7.258,3.895c-0.502,0.116-0.947,0.29-1.321,0.516C5.612,4.607,5.333,4.88,5.109,5.222c-0.222,0.34-0.326,0.726-0.316,1.179C4.801,6.804,4.927,7.18,5.178,7.551C5.43,7.922,5.91,8.311,6.605,8.704c0.358,0.209,0.842,0.453,1.435,0.725c0.602,0.275,1.201,0.579,1.781,0.902c0.91,0.513,1.61,1.119,2.08,1.802c0.475,0.69,0.725,1.492,0.743,2.385c0.019,0.936-0.189,1.771-0.618,2.487c-0.427,0.711-1.016,1.3-1.75,1.749c-0.664,0.407-1.439,0.726-2.304,0.943c-0.86,0.218-1.828,0.338-2.876,0.359C4.699,20.064,4.281,20.063,3.855,20.054z"/><path fill="#B5B0CA" d="M23.069,20l0.011-0.213c0.008-0.168,0.011-0.945,0.023-1.922c0.013-0.982-0.011-1.765-0.011-2.1c0-0.366-0.002-0.737-0.007-1.451c-0.004-0.711-0.011-1.237-0.02-1.565c-0.024-0.743-0.194-1.275-0.505-1.578c-0.292-0.285-0.835-0.429-1.614-0.429c-0.458,0-1.066,0.116-1.808,0.344c-0.712,0.219-1.474,0.557-2.266,0.923L16.958,23h-2.835l0.009-0.318c0.009-0.277,0.05-4.12,0.063-6.045c0.013-1.932,0.02-3.555,0.02-4.802c0-0.817-0.002-1.852-0.006-3.096c-0.004-1.247-0.02-4.6-0.046-6.593L14.157,2h2.771l-0.052,8.219c1.054-0.455,1.945-0.883,2.654-1.076c0.833-0.227,1.563-0.392,2.17-0.392c1.217,0,2.213,0.289,2.958,0.908c0.742,0.617,1.119,1.452,1.119,2.506c0,0.885-0.007,1.654-0.02,2.296c-0.013,0.641-0.02,0.996-0.02,1.394c0,0.64-0.021,1.43-0.004,2.196c0.017,0.774,0.021,1.496,0.03,1.739L25.771,20H23.069z"/><path fill="#9BB5AE" d="M28.031,20l0.022-0.363c0.006-0.08,0.016-0.554,0.032-2.227c0.013-1.348,0.02-2.491,0.02-3.37c0-0.771-0.002-1.879-0.007-2.804c-0.004-0.922-0.02-2.574-0.046-3.807L28.047,7h2.774l-0.005,0.425C30.799,8.503,30.783,10,30.771,10.94c-0.014,0.934-0.02,2.065-0.02,2.794c0,1.739-0.045,3.167-0.022,4.211c0.028,1.397,0.026,1.594,0.026,1.615L30.771,20H28.031z M28,4V2h3v2H28z"/><path fill="#A58C7A" d="M44.688,21.654c-1.647-1.75-6.269-6.487-8.734-9.08c0.371-0.361,0.676-0.65,1.589-1.543c1.129-1.102,2.237-2.011,3.296-3.033l0.243-0.235l-1.757-1.82l-0.243,0.258c-0.938,0.995-2.162,2.119-3.641,3.614c-0.003-1.138-0.004-2.16-0.004-2.359c0-0.232,0.002-0.971,0.007-2.207c0.004-1.225,0.02-2.295,0.046-3.23L35.496,2h-2.773l0.004,0.021c0.026,1.169,0.042,2.306,0.047,3.213c0.004,0.909,0.006,1.615,0.006,2.212c0,1.388-0.006,6.437-0.02,8.645c-0.017,2.743-0.048,3.447-0.054,3.55L32.686,20h2.851l-0.017-0.402c0-0.123-0.032-1.236-0.047-3.79c1.704,1.654,5.645,5.598,7.474,7.46l0.227,0.235l1.753-1.601L44.688,21.654z"/><path fill="#D98484" d="M45.335,20l0.022-0.395c0.006-0.078,0.016-0.567,0.032-2.24c0.013-1.348,0.02-2.499,0.02-3.377c0-0.771-0.002-1.884-0.007-2.808c-0.004-0.922-0.02-2.546-0.046-3.779L45.351,7h2.774L48.12,7.396c-0.018,1.077-0.033,2.561-0.046,3.5c-0.014,0.934-0.02,2.057-0.02,2.786c0,1.74-0.045,3.164-0.022,4.207c0.028,1.397,0.026,1.622,0.026,1.645L48.075,20H45.335z M45,4V2h3v2H45z"/></g></svg>
+        </a>
+      </li>
+      <li class="pull-right">
+        <a href="{BlogURL}" class="copyright">
+          ©{Title}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="nav-handle">
+    <span></span>
+  </div>
+</div>
+
+<div class="title-block">
+  {block:IfShowTitle}
+  <a href="/">
+    <h1 class="blog-title">{Title}</h1>
+  </a>
+  {/block:IfShowTitle}
+  {block:Description}
+  <h2 class="blog-description">{Description}</h2>
+  {/block:Description}
+</div>
+</header>
+{/block:IndexPage}
+
+<!-- パーマリンクページ ヘッダー -->
+{block:PermalinkPage}
+<div class="navbar">
+  <nav class="nav" role="navigation">
+    <ul>
+      {block:HasPages}
+      {block:Pages}
+      <li class="desktop">
+        <a href="{URL}" {Target}>{Label}</a>
+      </li>
+      {/block:Pages}
+      {/block:HasPages}
+      <li class="desktop">
+        <a href="/archive">Archive</a>
+      </li>
+      <li class="pull-right shiki-logo">
+        <a href="http://shikitheme.tumblr.com" {Target}>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="35px" height="60px" viewBox="0 0 50 24" enable-background="new 0 0 50 24" xml:space="preserve"><g><path fill="#F2B3BF" d="M3.855,20.054c-0.172-0.003-0.346-0.009-0.521-0.016c-0.745-0.028-0.986-0.04-1.057-0.045l-0.146-0.01l-0.11-2.209l0.206,0.023c0.119,0.014,0.473,0.038,1.023,0.069c0.24,0.014,0.502,0.022,0.782,0.026c0.368,0.005,0.709-0.019,1.138-0.026c0.457-0.009,1.055-0.083,1.778-0.219c0.717-0.134,1.272-0.3,1.648-0.493c0.489-0.253,0.865-0.555,1.118-0.898c0.25-0.339,0.367-0.757,0.356-1.278c-0.011-0.553-0.15-1.023-0.415-1.396c-0.269-0.381-0.723-0.753-1.349-1.105c-0.414-0.235-0.957-0.502-1.614-0.792c-0.669-0.296-1.282-0.607-1.819-0.925C3.944,10.22,3.266,9.612,2.857,8.951C2.447,8.289,2.23,7.537,2.214,6.717C2.197,5.88,2.366,5.139,2.716,4.514c0.346-0.618,0.806-1.157,1.368-1.603c0.571-0.446,1.282-0.79,2.11-1.022c0.821-0.23,1.748-0.357,2.754-0.377c0.416-0.008,0.843-0.008,1.27,0.002c0.133,0.002,0.267,0.006,0.4,0.011c0.571,0.02,0.888,0.034,0.97,0.041l0.137,0.013l0.202,2.211l-0.207-0.017c-0.079-0.006-0.401-0.028-0.964-0.064c-0.252-0.017-0.537-0.027-0.845-0.031C9.542,3.672,9.19,3.695,8.746,3.704C8.267,3.713,7.766,3.778,7.258,3.895c-0.502,0.116-0.947,0.29-1.321,0.516C5.612,4.607,5.333,4.88,5.109,5.222c-0.222,0.34-0.326,0.726-0.316,1.179C4.801,6.804,4.927,7.18,5.178,7.551C5.43,7.922,5.91,8.311,6.605,8.704c0.358,0.209,0.842,0.453,1.435,0.725c0.602,0.275,1.201,0.579,1.781,0.902c0.91,0.513,1.61,1.119,2.08,1.802c0.475,0.69,0.725,1.492,0.743,2.385c0.019,0.936-0.189,1.771-0.618,2.487c-0.427,0.711-1.016,1.3-1.75,1.749c-0.664,0.407-1.439,0.726-2.304,0.943c-0.86,0.218-1.828,0.338-2.876,0.359C4.699,20.064,4.281,20.063,3.855,20.054z"/><path fill="#B5B0CA" d="M23.069,20l0.011-0.213c0.008-0.168,0.011-0.945,0.023-1.922c0.013-0.982-0.011-1.765-0.011-2.1c0-0.366-0.002-0.737-0.007-1.451c-0.004-0.711-0.011-1.237-0.02-1.565c-0.024-0.743-0.194-1.275-0.505-1.578c-0.292-0.285-0.835-0.429-1.614-0.429c-0.458,0-1.066,0.116-1.808,0.344c-0.712,0.219-1.474,0.557-2.266,0.923L16.958,23h-2.835l0.009-0.318c0.009-0.277,0.05-4.12,0.063-6.045c0.013-1.932,0.02-3.555,0.02-4.802c0-0.817-0.002-1.852-0.006-3.096c-0.004-1.247-0.02-4.6-0.046-6.593L14.157,2h2.771l-0.052,8.219c1.054-0.455,1.945-0.883,2.654-1.076c0.833-0.227,1.563-0.392,2.17-0.392c1.217,0,2.213,0.289,2.958,0.908c0.742,0.617,1.119,1.452,1.119,2.506c0,0.885-0.007,1.654-0.02,2.296c-0.013,0.641-0.02,0.996-0.02,1.394c0,0.64-0.021,1.43-0.004,2.196c0.017,0.774,0.021,1.496,0.03,1.739L25.771,20H23.069z"/><path fill="#9BB5AE" d="M28.031,20l0.022-0.363c0.006-0.08,0.016-0.554,0.032-2.227c0.013-1.348,0.02-2.491,0.02-3.37c0-0.771-0.002-1.879-0.007-2.804c-0.004-0.922-0.02-2.574-0.046-3.807L28.047,7h2.774l-0.005,0.425C30.799,8.503,30.783,10,30.771,10.94c-0.014,0.934-0.02,2.065-0.02,2.794c0,1.739-0.045,3.167-0.022,4.211c0.028,1.397,0.026,1.594,0.026,1.615L30.771,20H28.031z M28,4V2h3v2H28z"/><path fill="#A58C7A" d="M44.688,21.654c-1.647-1.75-6.269-6.487-8.734-9.08c0.371-0.361,0.676-0.65,1.589-1.543c1.129-1.102,2.237-2.011,3.296-3.033l0.243-0.235l-1.757-1.82l-0.243,0.258c-0.938,0.995-2.162,2.119-3.641,3.614c-0.003-1.138-0.004-2.16-0.004-2.359c0-0.232,0.002-0.971,0.007-2.207c0.004-1.225,0.02-2.295,0.046-3.23L35.496,2h-2.773l0.004,0.021c0.026,1.169,0.042,2.306,0.047,3.213c0.004,0.909,0.006,1.615,0.006,2.212c0,1.388-0.006,6.437-0.02,8.645c-0.017,2.743-0.048,3.447-0.054,3.55L32.686,20h2.851l-0.017-0.402c0-0.123-0.032-1.236-0.047-3.79c1.704,1.654,5.645,5.598,7.474,7.46l0.227,0.235l1.753-1.601L44.688,21.654z"/><path fill="#D98484" d="M45.335,20l0.022-0.395c0.006-0.078,0.016-0.567,0.032-2.24c0.013-1.348,0.02-2.499,0.02-3.377c0-0.771-0.002-1.884-0.007-2.808c-0.004-0.922-0.02-2.546-0.046-3.779L45.351,7h2.774L48.12,7.396c-0.018,1.077-0.033,2.561-0.046,3.5c-0.014,0.934-0.02,2.057-0.02,2.786c0,1.74-0.045,3.164-0.022,4.207c0.028,1.397,0.026,1.622,0.026,1.645L48.075,20H45.335z M45,4V2h3v2H45z"/></g></svg>
+        </a>
+      </li>
+      <li class="pull-right">
+        <a href="{BlogURL}" class="copyright">
+          ©{Title}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+{/block:PermalinkPage}
+
+<div id="main" class="autopagerize_page_element" role="main">
+
+  {block:TagPage}
+  <h2 class="tagged">Posts tagged "{Tag}"</h2>
+  {/block:TagPage}
+
+  <!-- 投稿 -->
+  {block:Posts}
+  <article class="post {TagsAsClasses} {PostType}">
+
+    <!-- post: テキスト -->
+    {block:Text}
+    <div class="entry-container">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      <header class="entry-header">
+        {block:Title}
+        <h2 class="entry-title entry-text lead"><a href="{Permalink}" {Target}>{Title}</a></h2>
+        {/block:Title}
+      </header>
+
+      <div class="entry-text lead">
+        {Body}
+      </div>
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
+
+      <footer class="entry-footer">
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}" {Target}>#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+          {/block:HasTags}
+
+          <div class="note-info">
+            {block:RebloggedFrom}
+                      <span class="meta-elements reblog-root-name">
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
+                      </span>
+                      <span class="meta-elements reblog-parent-name">
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
+                      </span>
+            {/block:RebloggedFrom}
+            {block:NoteCount}
+                      <span class="meta-elements notecount">
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                      </span>
+            {/block:NoteCount}
+          </div>
+
+          <div>
+            {block:Date}
+                      <span class="date">
+                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                      </span>
+            {/block:Date}
+            {block:ContentSource}
+                      <span class="content-source">
+                        <a href="{SourceURL}" {Target}>
+                          {lang:Source}:
+                          {block:SourceLogo}
+                          <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                          {/block:SourceLogo}
+                          {block:NoSourceLogo}
+                          {SourceTitle}
+                          {/block:NoSourceLogo}
+                        </a>
+                      </span>
+            {/block:ContentSource}
           </div>
         </div>
+      </footer>
+    </div>
+    {/block:Text}
 
-        <div class="title-block">
-          {block:IfShowTitle}
-            <a href="/">
-              <h1 class="blog-title">{Title}</h1>
-            </a>
-          {/block:IfShowTitle}
-          {block:Description}
-            <h2 class="blog-description">{Description}</h2>
-          {/block:Description}
+    <!-- post: 画像 -->
+    {block:Photo}
+    <div class="entry-container">
+      {block:IndexPage}
+      <div class="photo-block">
+        <a href="{Permalink}" class="photo-container-link" {Target}>
+          <div class="photo-container"
+               style="background-image: none"
+               data-shiki-photoURL="{PhotoURL-HighRes}"
+               data-shiki-photoWidth="{PhotoWidth-HighRes}"
+               data-shiki-photoHeight="{PhotoHeight-HighRes}">
+          </div>
+        </a>
+      </div>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}
+      <div class="permalink-photo-container" style="max-width: {PhotoWidth-HighRes}px; height: {PhotoHeight-HighRes}ps">
+        <div class="permalink-spacer">
+          {LinkOpenTag}
+          <img style="width: {PhotoWidth-HighRes}px;" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+          {LinkCloseTag}
+        </div>
+      </div>
+      {/block:PermalinkPage}
+
+      <div class="hover-area desktop-only">
+        <div class="entry-block">
+          <div class="caption entry-text">
+            {block:Caption}
+            {Caption}
+            {/block:Caption}
+          </div>
+
+          <footer class="entry-footer">
+            <div class="meta meta-footer entry-text">
+              {block:HasTags}
+                      <span class="meta-elements hastags">
+                        {block:Tags}
+                          <a href="{TagURL}" {Target}>#{Tag}</a>
+                        {/block:Tags}
+                      </span>
+              {/block:HasTags}
+
+              <div class="note-info">
+                {block:RebloggedFrom}
+                        <span class="meta-elements reblog-root-name">
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
+                        </span>
+                        <span class="meta-elements reblog-parent-name">
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
+                        </span>
+                {/block:RebloggedFrom}
+                {block:NoteCount}
+                        <span class="meta-elements notecount">
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                        </span>
+                {/block:NoteCount}
+              </div>
+
+              <div>
+                {block:Date}
+                        <span class="date">
+                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                        </span>
+                {/block:Date}
+                {block:ContentSource}
+                        <span class="content-source">
+                          <a href="{SourceURL}" {Target}>
+                            {lang:Source}:
+                            {block:SourceLogo}
+                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                            {/block:SourceLogo}
+                            {block:NoSourceLogo}
+                            {SourceTitle}
+                            {/block:NoSourceLogo}
+                          </a>
+                        </span>
+                {/block:ContentSource}
+              </div>
+            </div>
+          </footer>
+
+          {block:IndexPage}
+          <ul class="like-and-reblog-buttons">
+            <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+            <li class="like-button">{LikeButton color="white" size="24"}</li>
+          </ul>
+          {/block:IndexPage}
+        </div>
+      </div>
+    </div>
+    {/block:Photo}
+
+    <!-- post: フォトセット -->
+    {block:Photoset}
+    <div class="entry-container">
+      {block:IndexPage}
+      {block:Photos}
+      <div class="photo-block photoset">
+        <a href="{Permalink}" class="photo-container-link" {Target}>
+          <div class="photo-container photoset"
+               style="background-image: none"
+               data-shiki-photoURL="{PhotoURL-HighRes}"
+               data-shiki-photoWidth="{PhotoWidth-HighRes}"
+               data-shiki-photoHeight="{PhotoHeight-HighRes}"
+               data-shiki-photoCount="{PhotoCount}"
+               data-shiki-photosetLayout="{PhotosetLayout}">
+          </div>
+        </a>
+      </div>
+      {/block:Photos}
+      {/block:IndexPage}
+
+      {block:PermalinkPage}
+      <div class="photoset-iframe-container">
+        {Photoset}
+      </div>
+      {/block:PermalinkPage}
+
+      <div class="hover-area desktop-only">
+        <div class="entry-block">
+          <div class="caption entry-text">
+            {block:Caption}
+            {Caption}
+            {/block:Caption}
+          </div>
+
+          <footer class="entry-footer">
+            <div class="meta meta-footer entry-text">
+              {block:HasTags}
+                      <span class="meta-elements hastags">
+                        {block:Tags}
+                          <a href="{TagURL}" {Target}>#{Tag}</a>
+                        {/block:Tags}
+                      </span>
+              {/block:HasTags}
+
+              <div class="note-info">
+                {block:RebloggedFrom}
+                        <span class="meta-elements reblog-root-name">
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
+                        </span>
+                        <span class="meta-elements reblog-parent-name">
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
+                        </span>
+                {/block:RebloggedFrom}
+                {block:NoteCount}
+                        <span class="meta-elements notecount">
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                        </span>
+                {/block:NoteCount}
+              </div>
+
+              <div>
+                {block:Date}
+                        <span class="date">
+                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                        </span>
+                {/block:Date}
+                {block:ContentSource}
+                        <span class="content-source">
+                          <a href="{SourceURL}" {Target}>
+                            {lang:Source}:
+                            {block:SourceLogo}
+                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                            {/block:SourceLogo}
+                            {block:NoSourceLogo}
+                            {SourceTitle}
+                            {/block:NoSourceLogo}
+                          </a>
+                        </span>
+                {/block:ContentSource}
+              </div>
+            </div>
+          </footer>
+
+          {block:IndexPage}
+          <ul class="like-and-reblog-buttons">
+            <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+            <li class="like-button">{LikeButton color="white" size="24"}</li>
+          </ul>
+          {/block:IndexPage}
+        </div>
+      </div>
+    </div>
+    {/block:Photoset}
+
+    <!-- post: 引用 -->
+    {block:Quote}
+    <div class="entry-container {Length}">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      <div class="entry-text lead">
+        <blockquote>{Quote}</blockquote>
+      </div>
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
+
+      <footer>
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}" {Target}>#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+          {/block:HasTags}
+
+          <div class="note-info">
+            {block:RebloggedFrom}
+                      <span class="meta-elements reblog-root-name">
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
+                      </span>
+                      <span class="meta-elements reblog-parent-name">
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
+                      </span>
+            {/block:RebloggedFrom}
+            {block:NoteCount}
+                      <span class="meta-elements notecount">
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                      </span>
+            {/block:NoteCount}
+          </div>
+
+          <div>
+            {block:Date}
+                      <span class="date">
+                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                      </span>
+            {/block:Date}
+            {block:Source}
+                      <span class="content-source">
+                        {lang:Source}:
+                        {Source}
+                      </span>
+            {/block:Source}
+          </div>
+        </div>
+      </footer>
+    </div>
+    {/block:Quote}
+
+    <!-- post: リンク -->
+    {block:Link}
+    <div class="entry-container">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      <header class="entry-header">
+        <div class="entry-text">
+          <a href="{URL}" class="link-url" {Target}>
+            <h2 class="link-title">{Name}</h2>
+            <div class="link-subtitle">{URL}</div>
+          </a>
         </div>
       </header>
-    {/block:IndexPage}
 
-    <!-- パーマリンクページ ヘッダー -->
-    {block:PermalinkPage}
-      <div class="navbar">
-        <nav class="nav" role="navigation">
-          <ul>
-            {block:HasPages}
-              {block:Pages}
-              <li class="desktop">
-                <a href="{URL}" {Target}>{Label}</a>
-              </li>
-              {/block:Pages}
-            {/block:HasPages}
-            <li class="desktop">
-              <a href="/archive">Archive</a>
-            </li>
-            <li class="pull-right shiki-logo">
-              <a href="http://shikitheme.tumblr.com" {Target}>
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="35px" height="60px" viewBox="0 0 50 24" enable-background="new 0 0 50 24" xml:space="preserve"><g><path fill="#F2B3BF" d="M3.855,20.054c-0.172-0.003-0.346-0.009-0.521-0.016c-0.745-0.028-0.986-0.04-1.057-0.045l-0.146-0.01l-0.11-2.209l0.206,0.023c0.119,0.014,0.473,0.038,1.023,0.069c0.24,0.014,0.502,0.022,0.782,0.026c0.368,0.005,0.709-0.019,1.138-0.026c0.457-0.009,1.055-0.083,1.778-0.219c0.717-0.134,1.272-0.3,1.648-0.493c0.489-0.253,0.865-0.555,1.118-0.898c0.25-0.339,0.367-0.757,0.356-1.278c-0.011-0.553-0.15-1.023-0.415-1.396c-0.269-0.381-0.723-0.753-1.349-1.105c-0.414-0.235-0.957-0.502-1.614-0.792c-0.669-0.296-1.282-0.607-1.819-0.925C3.944,10.22,3.266,9.612,2.857,8.951C2.447,8.289,2.23,7.537,2.214,6.717C2.197,5.88,2.366,5.139,2.716,4.514c0.346-0.618,0.806-1.157,1.368-1.603c0.571-0.446,1.282-0.79,2.11-1.022c0.821-0.23,1.748-0.357,2.754-0.377c0.416-0.008,0.843-0.008,1.27,0.002c0.133,0.002,0.267,0.006,0.4,0.011c0.571,0.02,0.888,0.034,0.97,0.041l0.137,0.013l0.202,2.211l-0.207-0.017c-0.079-0.006-0.401-0.028-0.964-0.064c-0.252-0.017-0.537-0.027-0.845-0.031C9.542,3.672,9.19,3.695,8.746,3.704C8.267,3.713,7.766,3.778,7.258,3.895c-0.502,0.116-0.947,0.29-1.321,0.516C5.612,4.607,5.333,4.88,5.109,5.222c-0.222,0.34-0.326,0.726-0.316,1.179C4.801,6.804,4.927,7.18,5.178,7.551C5.43,7.922,5.91,8.311,6.605,8.704c0.358,0.209,0.842,0.453,1.435,0.725c0.602,0.275,1.201,0.579,1.781,0.902c0.91,0.513,1.61,1.119,2.08,1.802c0.475,0.69,0.725,1.492,0.743,2.385c0.019,0.936-0.189,1.771-0.618,2.487c-0.427,0.711-1.016,1.3-1.75,1.749c-0.664,0.407-1.439,0.726-2.304,0.943c-0.86,0.218-1.828,0.338-2.876,0.359C4.699,20.064,4.281,20.063,3.855,20.054z"/><path fill="#B5B0CA" d="M23.069,20l0.011-0.213c0.008-0.168,0.011-0.945,0.023-1.922c0.013-0.982-0.011-1.765-0.011-2.1c0-0.366-0.002-0.737-0.007-1.451c-0.004-0.711-0.011-1.237-0.02-1.565c-0.024-0.743-0.194-1.275-0.505-1.578c-0.292-0.285-0.835-0.429-1.614-0.429c-0.458,0-1.066,0.116-1.808,0.344c-0.712,0.219-1.474,0.557-2.266,0.923L16.958,23h-2.835l0.009-0.318c0.009-0.277,0.05-4.12,0.063-6.045c0.013-1.932,0.02-3.555,0.02-4.802c0-0.817-0.002-1.852-0.006-3.096c-0.004-1.247-0.02-4.6-0.046-6.593L14.157,2h2.771l-0.052,8.219c1.054-0.455,1.945-0.883,2.654-1.076c0.833-0.227,1.563-0.392,2.17-0.392c1.217,0,2.213,0.289,2.958,0.908c0.742,0.617,1.119,1.452,1.119,2.506c0,0.885-0.007,1.654-0.02,2.296c-0.013,0.641-0.02,0.996-0.02,1.394c0,0.64-0.021,1.43-0.004,2.196c0.017,0.774,0.021,1.496,0.03,1.739L25.771,20H23.069z"/><path fill="#9BB5AE" d="M28.031,20l0.022-0.363c0.006-0.08,0.016-0.554,0.032-2.227c0.013-1.348,0.02-2.491,0.02-3.37c0-0.771-0.002-1.879-0.007-2.804c-0.004-0.922-0.02-2.574-0.046-3.807L28.047,7h2.774l-0.005,0.425C30.799,8.503,30.783,10,30.771,10.94c-0.014,0.934-0.02,2.065-0.02,2.794c0,1.739-0.045,3.167-0.022,4.211c0.028,1.397,0.026,1.594,0.026,1.615L30.771,20H28.031z M28,4V2h3v2H28z"/><path fill="#A58C7A" d="M44.688,21.654c-1.647-1.75-6.269-6.487-8.734-9.08c0.371-0.361,0.676-0.65,1.589-1.543c1.129-1.102,2.237-2.011,3.296-3.033l0.243-0.235l-1.757-1.82l-0.243,0.258c-0.938,0.995-2.162,2.119-3.641,3.614c-0.003-1.138-0.004-2.16-0.004-2.359c0-0.232,0.002-0.971,0.007-2.207c0.004-1.225,0.02-2.295,0.046-3.23L35.496,2h-2.773l0.004,0.021c0.026,1.169,0.042,2.306,0.047,3.213c0.004,0.909,0.006,1.615,0.006,2.212c0,1.388-0.006,6.437-0.02,8.645c-0.017,2.743-0.048,3.447-0.054,3.55L32.686,20h2.851l-0.017-0.402c0-0.123-0.032-1.236-0.047-3.79c1.704,1.654,5.645,5.598,7.474,7.46l0.227,0.235l1.753-1.601L44.688,21.654z"/><path fill="#D98484" d="M45.335,20l0.022-0.395c0.006-0.078,0.016-0.567,0.032-2.24c0.013-1.348,0.02-2.499,0.02-3.377c0-0.771-0.002-1.884-0.007-2.808c-0.004-0.922-0.02-2.546-0.046-3.779L45.351,7h2.774L48.12,7.396c-0.018,1.077-0.033,2.561-0.046,3.5c-0.014,0.934-0.02,2.057-0.02,2.786c0,1.74-0.045,3.164-0.022,4.207c0.028,1.397,0.026,1.622,0.026,1.645L48.075,20H45.335z M45,4V2h3v2H45z"/></g></svg>
-              </a>
-            </li>
-            <li class="pull-right">
-              <a href="{BlogURL}" class="copyright">
-                ©{Title}
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <div class="entry-text">
+        {block:Description}
+        <div class="link-description">{Description}</div>
+        {/block:Description}
       </div>
-    {/block:PermalinkPage}
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
 
-    <div id="main" class="autopagerize_page_element" role="main">
-
-      {block:TagPage}
-        <h2 class="tagged">Posts tagged "{Tag}"</h2>
-      {/block:TagPage}
-
-      <!-- 投稿 -->
-      {block:Posts}
-        <article class="post {TagsAsClasses} {PostType}">
-
-          <!-- post: テキスト -->
-          {block:Text}
-            <div class="entry-container">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              <header class="entry-header">
-                {block:Title}
-                  <h2 class="entry-title entry-text"><a href="{Permalink}" {Target}>{Title}</a></h2>
-                {/block:Title}
-              </header>
-
-              <div class="entry-text body">
-                {Body}
-              </div>
-
-              <footer class="entry-footer">
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
+      <footer class="entry-footer">
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
                     <span class="meta-elements hastags">
                       {block:Tags}
                         <a href="{TagURL}" {Target}>#{Tag}</a>
                       {/block:Tags}
                     </span>
-                  {/block:HasTags}
+          {/block:HasTags}
 
-                  <div class="note-info">
-                    {block:RebloggedFrom}
+          <div class="note-info">
+            {block:RebloggedFrom}
                       <span class="meta-elements reblog-root-name">
                         <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
                         </a>
                       </span>
                       <span class="meta-elements reblog-parent-name">
                         <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
                         </a>
                       </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
+            {/block:RebloggedFrom}
+            {block:NoteCount}
                       <span class="meta-elements notecount">
                         <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
                       </span>
-                    {/block:NoteCount}
-                  </div>
+            {/block:NoteCount}
+          </div>
 
-                  <div>
-                    {block:Date}
+          <div>
+            {block:Date}
                       <span class="date">
                         <a href="{Permalink}" {Target}>{TimeAgo}</a>
                       </span>
-                    {/block:Date}
-                    {block:ContentSource}
+            {/block:Date}
+            {block:ContentSource}
                       <span class="content-source">
                         <a href="{SourceURL}" {Target}>
                           {lang:Source}:
                           {block:SourceLogo}
-                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                          <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
                           {/block:SourceLogo}
                           {block:NoSourceLogo}
-                              {SourceTitle}
+                          {SourceTitle}
                           {/block:NoSourceLogo}
                         </a>
                       </span>
-                    {/block:ContentSource}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Text}
-
-          <!-- post: 画像 -->
-          {block:Photo}
-            <div class="entry-container">
-              {block:IndexPage}
-              <div class="photo-block">
-                <a href="{Permalink}" class="photo-container-link" {Target}>
-                  <div class="photo-container"
-                     style="background-image: none"
-                     data-shiki-photoURL="{PhotoURL-HighRes}"
-                     data-shiki-photoWidth="{PhotoWidth-HighRes}"
-                     data-shiki-photoHeight="{PhotoHeight-HighRes}">
-                  </div>
-                </a>
-              </div>
-              {/block:IndexPage}
-
-              {block:PermalinkPage}
-              <div class="permalink-photo-container" style="max-width: {PhotoWidth-HighRes}px; height: {PhotoHeight-HighRes}ps">
-                <div class="permalink-photo-spacer">
-                  {LinkOpenTag}
-                    <img style="width: {PhotoWidth-HighRes}px;" src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-                  {LinkCloseTag}
-                </div>
-              </div>
-              {/block:PermalinkPage}
-
-              <div class="hover-area">
-              <div class="entry-block">
-                <div class="caption entry-text">
-                  {block:Caption}
-                    {Caption}
-                  {/block:Caption}
-                </div>
-
-                <footer class="entry-footer">
-                  <div class="meta meta-footer entry-text">
-                    {block:HasTags}
-                      <span class="meta-elements hastags">
-                        {block:Tags}
-                          <a href="{TagURL}" {Target}>#{Tag}</a>
-                        {/block:Tags}
-                      </span>
-                    {/block:HasTags}
-
-                    <div class="note-info">
-                      {block:RebloggedFrom}
-                        <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>
-                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                          </a>
-                        </span>
-                        <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>
-                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                          </a>
-                        </span>
-                      {/block:RebloggedFrom}
-                      {block:NoteCount}
-                        <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                        </span>
-                      {/block:NoteCount}
-                    </div>
-
-                    <div>
-                      {block:Date}
-                        <span class="date">
-                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                        </span>
-                      {/block:Date}
-                      {block:ContentSource}
-                        <span class="content-source">
-                          <a href="{SourceURL}" {Target}>
-                            {lang:Source}:
-                            {block:SourceLogo}
-                              <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                            {/block:SourceLogo}
-                            {block:NoSourceLogo}
-                                {SourceTitle}
-                            {/block:NoSourceLogo}
-                          </a>
-                        </span>
-                      {/block:ContentSource}
-                    </div>
-                  </div>
-                </footer>
-
-                {block:IndexPage}
-                  <ul class="like-and-reblog-buttons">
-                    <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                    <li class="like-button">{LikeButton color="white" size="24"}</li>
-                  </ul>
-                {/block:IndexPage}
-              </div>
-              </div>
-            </div>
-          {/block:Photo}
-
-          <!-- post: フォトセット -->
-          {block:Photoset}
-            <div class="entry-container">
-              {block:IndexPage}
-              {block:Photos}
-                <div class="photo-block photoset">
-                  <a href="{Permalink}" class="photo-container-link" {Target}>
-                    <div class="photo-container photoset"
-                         style="background-image: none"
-                         data-shiki-photoURL="{PhotoURL-HighRes}"
-                         data-shiki-photoWidth="{PhotoWidth-HighRes}"
-                         data-shiki-photoHeight="{PhotoHeight-HighRes}"
-                         data-shiki-photoCount="{PhotoCount}"
-                         data-shiki-photosetLayout="{PhotosetLayout}">
-                    </div>
-                  </a>
-                </div>
-              {/block:Photos}
-              {/block:IndexPage}
-
-              {block:PermalinkPage}
-                <div class="photoset-iframe-container">
-                  {Photoset}
-                </div>
-              {/block:PermalinkPage}
-
-              <div class="hover-area">
-              <div class="entry-block">
-                <div class="caption entry-text">
-                  {block:Caption}
-                    {Caption}
-                  {/block:Caption}
-                </div>
-
-                <footer class="entry-footer">
-                  <div class="meta meta-footer entry-text">
-                    {block:HasTags}
-                      <span class="meta-elements hastags">
-                        {block:Tags}
-                          <a href="{TagURL}" {Target}>#{Tag}</a>
-                        {/block:Tags}
-                      </span>
-                    {/block:HasTags}
-
-                    <div class="note-info">
-                      {block:RebloggedFrom}
-                        <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>
-                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                          </a>
-                        </span>
-                        <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>
-                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                          </a>
-                        </span>
-                      {/block:RebloggedFrom}
-                      {block:NoteCount}
-                        <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                        </span>
-                      {/block:NoteCount}
-                    </div>
-
-                    <div>
-                      {block:Date}
-                        <span class="date">
-                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                        </span>
-                      {/block:Date}
-                      {block:ContentSource}
-                        <span class="content-source">
-                          <a href="{SourceURL}" {Target}>
-                            {lang:Source}:
-                            {block:SourceLogo}
-                              <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                            {/block:SourceLogo}
-                            {block:NoSourceLogo}
-                                {SourceTitle}
-                            {/block:NoSourceLogo}
-                          </a>
-                        </span>
-                      {/block:ContentSource}
-                    </div>
-                  </div>
-                </footer>
-
-                {block:IndexPage}
-                  <ul class="like-and-reblog-buttons">
-                    <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                    <li class="like-button">{LikeButton color="white" size="24"}</li>
-                  </ul>
-                {/block:IndexPage}
-              </div>
-              </div>
-            </div>
-          {/block:Photoset}
-
-          <!-- post: 引用 -->
-          {block:Quote}
-            <div class="entry-container {Length}">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              <div class="entry-text body">
-                <blockquote>{Quote}</blockquote>
-              </div>
-
-              <footer>
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}" {Target}>#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-
-                  <div class="note-info">
-                    {block:RebloggedFrom}
-                      <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                        </a>
-                      </span>
-                      <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                        </a>
-                      </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
-                      <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                      </span>
-                    {/block:NoteCount}
-                  </div>
-
-                  <div>
-                    {block:Date}
-                      <span class="date">
-                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                      </span>
-                    {/block:Date}
-                    {block:Source}
-                      <span class="content-source">
-                        {lang:Source}:
-                        {Source}
-                      </span>
-                    {/block:Source}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Quote}
-
-          <!-- post: リンク -->
-          {block:Link}
-            <div class="entry-container">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              <header class="entry-header">
-                <div class="entry-text">
-                    <a href="{URL}" class="link-url" {Target}>
-                      <h2 class="link-title">{Name}</h2>
-                      <div class="link-subtitle">{URL}</div>
-                    </a>
-                </div>
-              </header>
-
-              <div class="entry-text">
-                {block:Description}
-                  <div class="link-description">{Description}</div>
-                {/block:Description}
-              </div>
-
-              <footer class="entry-footer">
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}" {Target}>#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-
-                  <div class="note-info">
-                    {block:RebloggedFrom}
-                      <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                        </a>
-                      </span>
-                      <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                        </a>
-                      </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
-                      <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                      </span>
-                    {/block:NoteCount}
-                  </div>
-
-                  <div>
-                    {block:Date}
-                      <span class="date">
-                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                      </span>
-                    {/block:Date}
-                    {block:ContentSource}
-                      <span class="content-source">
-                        <a href="{SourceURL}" {Target}>
-                          {lang:Source}:
-                          {block:SourceLogo}
-                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                          {/block:SourceLogo}
-                          {block:NoSourceLogo}
-                              {SourceTitle}
-                          {/block:NoSourceLogo}
-                        </a>
-                      </span>
-                    {/block:ContentSource}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Link}
-
-          <!-- post: チャット -->
-          {block:Chat}
-            <div class="entry-container">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              {block:Title}
-                <header class="entry-header">
-                  <h2 class="entry-title entry-text"><a href="{Permalink}" {Target}>{Title}</a></h2>
-                </header>
-              {/block:Title}
-
-              <div class="entry-text body">
-                <ul class="ul-chat">
-                  {block:Lines}
-                  <li class="{Alt} user_{UserNumber}">
-                  {block:Label}
-                  <span class="label">{Label}</span>
-                  {/block:Label}
-                  {Line}
-                  </li>
-                  {/block:Lines}
-                </ul>
-              </div>
-
-              <footer class="entry-footer">
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}" {Target}>#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-
-                  <div class="note-info">
-                    {block:RebloggedFrom}
-                      <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                        </a>
-                      </span>
-                      <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                        </a>
-                      </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
-                      <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                      </span>
-                    {/block:NoteCount}
-                  </div>
-
-                  <div>
-                    {block:Date}
-                      <span class="date">
-                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                      </span>
-                    {/block:Date}
-                    {block:ContentSource}
-                      <span class="content-source">
-                        <a href="{SourceURL}" {Target}>
-                          {lang:Source}:
-                          {block:SourceLogo}
-                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                          {/block:SourceLogo}
-                          {block:NoSourceLogo}
-                              {SourceTitle}
-                          {/block:NoSourceLogo}
-                        </a>
-                      </span>
-                    {/block:ContentSource}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Chat}
-
-          <!-- post: ビデオ -->
-          {block:Video}
-            <div class="entry-container">
-              <div class="video-iframe">
-                {Video-700}
-              </div>
-
-              <div class="entry-block">
-                <div class="caption entry-text">
-                  {block:Caption}
-                    {Caption}
-                  {/block:Caption}
-                </div>
-
-                <footer class="entry-footer">
-                  <div class="meta meta-footer entry-text">
-                    {block:HasTags}
-                      <span class="meta-elements hastags">
-                        {block:Tags}
-                          <a href="{TagURL}" {Target}>#{Tag}</a>
-                        {/block:Tags}
-                      </span>
-                    {/block:HasTags}
-
-                    <div class="note-info">
-                      {block:RebloggedFrom}
-                        <span class="meta-elements reblog-root-name">
-                          <a href="{ReblogRootURL}" {Target}>
-                            <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                          </a>
-                        </span>
-                        <span class="meta-elements reblog-parent-name">
-                          <a href="{ReblogParentURL}" {Target}>
-                            <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                          </a>
-                        </span>
-                      {/block:RebloggedFrom}
-                      {block:NoteCount}
-                        <span class="meta-elements notecount">
-                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                        </span>
-                      {/block:NoteCount}
-                    </div>
-
-                    <div>
-                      {block:Date}
-                        <span class="date">
-                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                        </span>
-                      {/block:Date}
-                      {block:ContentSource}
-                        <span class="content-source">
-                          <a href="{SourceURL}" {Target}>
-                            {lang:Source}:
-                            {block:SourceLogo}
-                              <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                            {/block:SourceLogo}
-                            {block:NoSourceLogo}
-                                {SourceTitle}
-                            {/block:NoSourceLogo}
-                          </a>
-                        </span>
-                      {/block:ContentSource}
-                    </div>
-                  </div>
-                </footer>
-
-                {block:IndexPage}
-                  <ul class="like-and-reblog-buttons">
-                    <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                    <li class="like-button">{LikeButton color="white" size="24"}</li>
-                  </ul>
-                {/block:IndexPage}
-              </div>
-            </div>
-          {/block:Video}
-
-          <!-- post: オーディオ -->
-          {block:Audio}
-            <div class="entry-container">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              {AudioPlayer}
-
-              <div class="caption entry-text">
-                {block:Caption}
-                  {Caption}
-                {/block:Caption}
-              </div>
-
-              <footer class="entry-footer">
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}" {Target}>#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-
-                  <div class="note-info">
-                    {block:RebloggedFrom}
-                      <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                        </a>
-                      </span>
-                      <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                        </a>
-                      </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
-                      <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                      </span>
-                    {/block:NoteCount}
-                  </div>
-
-                  <div>
-                    {block:Date}
-                      <span class="date">
-                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                      </span>
-                    {/block:Date}
-                    {block:ContentSource}
-                      <span class="content-source">
-                        <a href="{SourceURL}" {Target}>
-                          {lang:Source}:
-                          {block:SourceLogo}
-                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
-                          {/block:SourceLogo}
-                          {block:NoSourceLogo}
-                              {SourceTitle}
-                          {/block:NoSourceLogo}
-                        </a>
-                      </span>
-                    {/block:ContentSource}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Audio}
-
-          <!-- post: Answer -->
-          {block:Answer}
-            <div class="entry-container">
-              {block:IndexPage}
-                <ul class="like-and-reblog-buttons">
-                  <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-                  <li class="like-button">{LikeButton color="white" size="24"}</li>
-                </ul>
-              {/block:IndexPage}
-
-              <div class="entry-text">
-                <div class="question bubble">
-                  {Question}
-                </div>
-                <div class="asker-group">
-                  <img src="{AskerPortraitURL-24}" width="24" height="24" /> {Asker}
-                </div>
-                <div class="answer cont">{Answer}</div>
-              </div>
-
-              <footer>
-                <div class="meta meta-footer entry-text">
-                  {block:HasTags}
-                    <span class="meta-elements hastags">
-                      {block:Tags}
-                        <a href="{TagURL}" {Target}>#{Tag}</a>
-                      {/block:Tags}
-                    </span>
-                  {/block:HasTags}
-
-                  <div class="note-info">
-                    {block:RebloggedFrom}
-                      <span class="meta-elements reblog-root-name">
-                        <a href="{ReblogRootURL}" {Target}>
-                          <img src="{ReblogRootPortraitURL-16}" class="favicon"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
-                        </a>
-                      </span>
-                      <span class="meta-elements reblog-parent-name">
-                        <a href="{ReblogParentURL}" {Target}>
-                          <img src="{ReblogParentPortraitURL-16}" class="favicon"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
-                        </a>
-                      </span>
-                    {/block:RebloggedFrom}
-                    {block:NoteCount}
-                      <span class="meta-elements notecount">
-                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
-                      </span>
-                    {/block:NoteCount}
-                  </div>
-
-                  <div>
-                    {block:Date}
-                      <span class="date">
-                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
-                      </span>
-                    {/block:Date}
-                    {block:Source}
-                      <span class="content-source">
-                        {lang:Source}:
-                        {Source}
-                      </span>
-                    {/block:Source}
-                  </div>
-                </div>
-              </footer>
-            </div>
-          {/block:Answer}
-
-          {block:PermalinkPage}
-            <div class="permalink-controller">
-              <!-- パーマリンクのページャ -->
-              {block:PermalinkPagination}
-              <div class="pagenation pagenation-permalink">
-                {block:NextPost}
-                <a href="{NextPost}" class="button next" rel="next">&#x25C0;</a>
-                {/block:NextPost}
-                {block:PreviousPost}
-                <a href="{PreviousPost}" class="button prev" rel="prev">&#x25B6;</a>
-                {/block:PreviousPost}
-              </div>
-              {/block:PermalinkPagination}
-
-              <ul class="like-and-reblog-buttons">
-                <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
-                <li class="like-button">{LikeButton color="white" size="20"}</li>
-              </ul>
-            </div>
-
-            <ul class="entry-text social-buttons">
-              {block:IfEnableTweetButton}
-              <li class="social-button">
-                <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-              </li>
-              {/block:IfEnableTweetButton}
-              {block:IfEnableBookmarkButton}
-              <li class="social-button">
-                <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-                <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-              </li>
-              {/block:IfEnableBookmarkButton}
-              {block:IfEnableLikeButton}
-              <li class="social-button">
-                <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
-              </li>
-              {/block:IfEnableLikeButton}
-              {block:IfEnablePlus1Button}
-              <li class="social-button">
-                <div class="g-plusone" data-size="medium"></div>
-                <script type="text/javascript">
-                  window.___gcfg = {lang: 'ja'};
-
-                  (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                  })();
-                </script>
-              </li>
-              {/block:IfEnablePlus1Button}
-            </ul>
-          {/block:PermalinkPage}
-
-          {block:PostNotes}
-            <div class="entry-text">
-              <div class="notes-container">{PostNotes}</div>
-            </div>
-          {/block:PostNotes}
-        </article>
-
-      {/block:Posts}
-
+            {/block:ContentSource}
+          </div>
+        </div>
+      </footer>
     </div>
+    {/block:Link}
 
-    <!-- ページごとのページャ -->
-    {block:Pagination}
-      <div class="pagenation pagenation-index" style="display: none;">
-        {block:PreviousPage}
-          <a href="{PreviousPage}">Prev</a>
-        {/block:PreviousPage}
-        {block:JumpPagination length="5"}
-          {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
-          {block:JumpPage}<a class="jump-page" href="{URL}">{PageNumber}</a>{/block:JumpPage}
-        {/block:JumpPagination}
-        {block:NextPage}
-          <a href="{NextPage}" class="next" rel="next">Next</a>
-          <div class="next-url" data-shiki-nextPageURL="{NextPage}"></div>
-        {/block:NextPage}
+    <!-- post: チャット -->
+    {block:Chat}
+    <div class="entry-container">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      {block:Title}
+      <header class="entry-header">
+        <h2 class="entry-title entry-text"><a href="{Permalink}" {Target}>{Title}</a></h2>
+      </header>
+      {/block:Title}
+
+      <div class="entry-text lead">
+        <ul class="ul-chat">
+          {block:Lines}
+          <li class="{Alt} user_{UserNumber}">
+            {block:Label}
+            <span class="label">{Label}</span>
+            {/block:Label}
+            {Line}
+          </li>
+          {/block:Lines}
+        </ul>
       </div>
-    {/block:Pagination}
+      {block:PermalinkPage}</div>{block:PermalinkPage}
 
-  </div>
+      <footer class="entry-footer">
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}" {Target}>#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+          {/block:HasTags}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script type="text/javascript">
-    $(function() {
-      var nowFetching = false;
-      var nextPageURL = [];
-      var finalPage = false;
-      var isDesktop = false;
-      var appearingPosts = {};
+          <div class="note-info">
+            {block:RebloggedFrom}
+                      <span class="meta-elements reblog-root-name">
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
+                      </span>
+                      <span class="meta-elements reblog-parent-name">
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
+                      </span>
+            {/block:RebloggedFrom}
+            {block:NoteCount}
+                      <span class="meta-elements notecount">
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                      </span>
+            {/block:NoteCount}
+          </div>
 
-      var windowAspect = function() {
-        return (isDesktop)? window.innerHeight / window.innerWidth : firstWindowAspect;
-      };
+          <div>
+            {block:Date}
+                      <span class="date">
+                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                      </span>
+            {/block:Date}
+            {block:ContentSource}
+                      <span class="content-source">
+                        <a href="{SourceURL}" {Target}>
+                          {lang:Source}:
+                          {block:SourceLogo}
+                          <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                          {/block:SourceLogo}
+                          {block:NoSourceLogo}
+                          {SourceTitle}
+                          {/block:NoSourceLogo}
+                        </a>
+                      </span>
+            {/block:ContentSource}
+          </div>
+        </div>
+      </footer>
+    </div>
+    {/block:Chat}
 
-      var windowInnerHeight = function() {
-        return (isDesktop)? window.innerHeight : firstInnerHeight;
-      };
+    <!-- post: ビデオ -->
+    {block:Video}
+    <div class="entry-container">
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      <div class="video-iframe">
+        {Video-700}
+      </div>
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
 
-      var windowInnerWidth = function() {
-        return (isDesktop)? window.innerWidth : firstInnerWidth;
-      };
+      <div class="entry-block desktop-only">
+        <div class="caption entry-text">
+          {block:Caption}
+          {Caption}
+          {/block:Caption}
+        </div>
 
-      var firstWindowAspect = window.innerHeight / window.innerWidth;
-      var firstInnerHeight = window.innerHeight;
-      var firstInnerWidth = window.innerWidth;
+        <footer class="entry-footer">
+          <div class="meta meta-footer entry-text">
+            {block:HasTags}
+                      <span class="meta-elements hastags">
+                        {block:Tags}
+                          <a href="{TagURL}" {Target}>#{Tag}</a>
+                        {/block:Tags}
+                      </span>
+            {/block:HasTags}
 
-      var initializeCSS = function() {
-        {block:PermalinkPage}
-        // photoset iframe内CSS変更
-        $("iframe.photoset").load(function() {
-          console.log("load");
-          $(this).contents().find(".photoset_row")
-                  .css("width", "680px")
-                  .css("margin", "10px")
-                  .css("border-radius", "6px");
-        });
-        {/block:PermalinkPage}
-      };
+            <div class="note-info">
+              {block:RebloggedFrom}
+                        <span class="meta-elements reblog-root-name">
+                          <a href="{ReblogRootURL}" {Target}>
+                            <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                          </a>
+                        </span>
+                        <span class="meta-elements reblog-parent-name">
+                          <a href="{ReblogParentURL}" {Target}>
+                            <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                          </a>
+                        </span>
+              {/block:RebloggedFrom}
+              {block:NoteCount}
+                        <span class="meta-elements notecount">
+                          <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                        </span>
+              {/block:NoteCount}
+            </div>
 
-      var updatePhotoCSS = function($photo) {
-        var heightInfluenceParam = 0.6;
-        var mobileHeightInfluenceParam = 0.7;
-        var photoAspect = $photo.attr("data-shiki-photoHeight") / $photo.attr("data-shiki-photoWidth");
-        $photo.attr("data-shiki-photoAspect", photoAspect);
+            <div>
+              {block:Date}
+                        <span class="date">
+                          <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                        </span>
+              {/block:Date}
+              {block:ContentSource}
+                        <span class="content-source">
+                          <a href="{SourceURL}" {Target}>
+                            {lang:Source}:
+                            {block:SourceLogo}
+                            <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                            {/block:SourceLogo}
+                            {block:NoSourceLogo}
+                            {SourceTitle}
+                            {/block:NoSourceLogo}
+                          </a>
+                        </span>
+              {/block:ContentSource}
+            </div>
+          </div>
+        </footer>
 
         {block:IndexPage}
-        var areaHeight, areaAspect;
-        if (isDesktop) {
-          areaHeight = windowInnerWidth() * photoAspect * heightInfluenceParam;
-          if (areaHeight > windowInnerHeight()) {
-            areaHeight -= (areaHeight - windowInnerHeight()) * (1 - heightInfluenceParam);
-          }
-          areaAspect = areaHeight / windowInnerWidth();
-          $photo.css("background-size", (photoAspect > areaAspect) ?
-                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
+        <ul class="like-and-reblog-buttons">
+          <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+          <li class="like-button">{LikeButton color="white" size="24"}</li>
+        </ul>
+        {/block:IndexPage}
+      </div>
+    </div>
+    {/block:Video}
+
+    <!-- post: オーディオ -->
+    {block:Audio}
+    <div class="entry-container">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      {AudioPlayer}
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
+
+      <div class="caption entry-text">
+        {block:Caption}
+        {Caption}
+        {/block:Caption}
+      </div>
+
+      <footer class="entry-footer">
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}" {Target}>#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+          {/block:HasTags}
+
+          <div class="note-info">
+            {block:RebloggedFrom}
+                      <span class="meta-elements reblog-root-name">
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
+                      </span>
+                      <span class="meta-elements reblog-parent-name">
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
+                      </span>
+            {/block:RebloggedFrom}
+            {block:NoteCount}
+                      <span class="meta-elements notecount">
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                      </span>
+            {/block:NoteCount}
+          </div>
+
+          <div>
+            {block:Date}
+                      <span class="date">
+                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                      </span>
+            {/block:Date}
+            {block:ContentSource}
+                      <span class="content-source">
+                        <a href="{SourceURL}" {Target}>
+                          {lang:Source}:
+                          {block:SourceLogo}
+                          <img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />
+                          {/block:SourceLogo}
+                          {block:NoSourceLogo}
+                          {SourceTitle}
+                          {/block:NoSourceLogo}
+                        </a>
+                      </span>
+            {/block:ContentSource}
+          </div>
+        </div>
+      </footer>
+    </div>
+    {/block:Audio}
+
+    <!-- post: Answer -->
+    {block:Answer}
+    <div class="entry-container">
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
+        <li class="like-button">{LikeButton color="white" size="24"}</li>
+      </ul>
+      {/block:IndexPage}
+
+      {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
+      <div class="entry-text">
+        <div class="question bubble">
+          {Question}
+        </div>
+        <div class="asker-group">
+          <img src="{AskerPortraitURL-24}" width="24" height="24" /> {Asker}
+        </div>
+        <div class="answer cont">{Answer}</div>
+      </div>
+      {block:PermalinkPage}</div>{/block:PermalinkPage}
+
+      <footer>
+        <div class="meta meta-footer entry-text">
+          {block:HasTags}
+                    <span class="meta-elements hastags">
+                      {block:Tags}
+                        <a href="{TagURL}" {Target}>#{Tag}</a>
+                      {/block:Tags}
+                    </span>
+          {/block:HasTags}
+
+          <div class="note-info">
+            {block:RebloggedFrom}
+                      <span class="meta-elements reblog-root-name">
+                        <a href="{ReblogRootURL}" {Target}>
+                          <img src="{ReblogRootPortraitURL-16}" class="avatar"/><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1280 1280" enable-background="new 0 0 1280 1280" xml:space="preserve"><path d="M1218.01,332.89v728c-548.18,0-541.21-88.92-975.21-108.3v309.96H61.99V17.45 C625.39,17.45,710.8,332.89,1218.01,332.89z"/></svg>{ReblogRootName}
+                        </a>
+                      </span>
+                      <span class="meta-elements reblog-parent-name">
+                        <a href="{ReblogParentURL}" {Target}>
+                          <img src="{ReblogParentPortraitURL-16}" class="avatar"/><svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M5.01092527,5.99908429 L16.0088498,5.99908429 L16.136,9.508 L20.836,4.752 L16.136,0.083 L16.1360004,3.01110845 L2.09985349,3.01110845 C1.50585349,3.01110845 0.979248041,3.44726568 0.979248041,4.45007306 L0.979248041,10.9999998 L3.98376463,8.30993634 L3.98376463,6.89801007 C3.98376463,6.20867902 4.71892527,5.99908429 5.01092527,5.99908429 Z"></path><path d="M17.1420002,13.2800293 C17.1420002,13.5720293 17.022957,14.0490723 16.730957,14.0490723 L4.92919922,14.0490723 L4.92919922,11 L0.5,15.806 L4.92919922,20.5103758 L5.00469971,16.9990234 L18.9700928,16.9990234 C19.5640928,16.9990234 19.9453125,16.4010001 19.9453125,15.8060001 L19.9453125,9.5324707 L17.142,12.203"></path></svg>{ReblogParentName}
+                        </a>
+                      </span>
+            {/block:RebloggedFrom}
+            {block:NoteCount}
+                      <span class="meta-elements notecount">
+                        <a href="{Permalink}" {Target}>{NoteCountWithLabel}</a>
+                      </span>
+            {/block:NoteCount}
+          </div>
+
+          <div>
+            {block:Date}
+                      <span class="date">
+                        <a href="{Permalink}" {Target}>{TimeAgo}</a>
+                      </span>
+            {/block:Date}
+            {block:Source}
+                      <span class="content-source">
+                        {lang:Source}:
+                        {Source}
+                      </span>
+            {/block:Source}
+          </div>
+        </div>
+      </footer>
+    </div>
+    {/block:Answer}
+
+    {block:PermalinkPage}
+    <div class="permalink-controller">
+      <!-- パーマリンクのページャ -->
+      {block:PermalinkPagination}
+      <div class="pagenation pagenation-permalink">
+        {block:NextPost}
+        <a href="{NextPost}" class="button next" rel="next">&#x25C0;</a>
+        {/block:NextPost}
+        {block:PreviousPost}
+        <a href="{PreviousPost}" class="button prev" rel="prev">&#x25B6;</a>
+        {/block:PreviousPost}
+      </div>
+      {/block:PermalinkPagination}
+
+      <ul class="like-and-reblog-buttons">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+    </div>
+
+    <ul class="entry-text social-buttons">
+      {block:IfEnableTweetButton}
+      <li class="social-button">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </li>
+      {/block:IfEnableTweetButton}
+      {block:IfEnableBookmarkButton}
+      <li class="social-button">
+        <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        <script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      </li>
+      {/block:IfEnableBookmarkButton}
+      {block:IfEnableLikeButton}
+      <li class="social-button">
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+      </li>
+      {/block:IfEnableLikeButton}
+      {block:IfEnablePlus1Button}
+      <li class="social-button">
+        <div class="g-plusone" data-size="medium"></div>
+        <script type="text/javascript">
+          window.___gcfg = {lang: 'ja'};
+
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+      </li>
+      {/block:IfEnablePlus1Button}
+    </ul>
+    {/block:PermalinkPage}
+
+    {block:PostNotes}
+    <div class="entry-text">
+      <div class="notes-container">{PostNotes}</div>
+    </div>
+    {/block:PostNotes}
+  </article>
+
+  {/block:Posts}
+
+</div>
+
+<!-- ページごとのページャ -->
+{block:Pagination}
+<div class="pagenation pagenation-index" style="display: none;">
+  {block:PreviousPage}
+  <a href="{PreviousPage}">Prev</a>
+  {/block:PreviousPage}
+  {block:JumpPagination length="5"}
+  {block:CurrentPage}<span class="current-page">{PageNumber}</span>{/block:CurrentPage}
+  {block:JumpPage}<a class="jump-page" href="{URL}">{PageNumber}</a>{/block:JumpPage}
+  {/block:JumpPagination}
+  {block:NextPage}
+  <a href="{NextPage}" class="next" rel="next">Next</a>
+  <div class="next-url" data-shiki-nextPageURL="{NextPage}"></div>
+  {/block:NextPage}
+</div>
+{/block:Pagination}
+
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    var nowFetching = false;
+    var nextPageURL = [];
+    var finalPage = false;
+    var isDesktop = false;
+    var appearingPosts = {};
+
+    var windowAspect = function() {
+      return (isDesktop)? window.innerHeight / window.innerWidth : firstWindowAspect;
+    };
+
+    var windowInnerHeight = function() {
+      return (isDesktop)? window.innerHeight : firstInnerHeight;
+    };
+
+    var windowInnerWidth = function() {
+      return (isDesktop)? window.innerWidth : firstInnerWidth;
+    };
+
+    var firstWindowAspect = window.innerHeight / window.innerWidth;
+    var firstInnerHeight = window.innerHeight;
+    var firstInnerWidth = window.innerWidth;
+
+    var initializeCSS = function() {
+      {block:PermalinkPage}
+      // photoset iframe内CSS変更
+      $("iframe.photoset").load(function() {
+        console.log("load");
+        $(this).contents().find(".photoset_row")
+                .css("width", "680px")
+                .css("margin", "10px")
+                .css("border-radius", "6px");
+      });
+      {/block:PermalinkPage}
+    };
+
+    var updatePhotoCSS = function($photo) {
+      var heightInfluenceParam = 0.6;
+      var mobileHeightInfluenceParam = 0.7;
+      var photoAspect = $photo.attr("data-shiki-photoHeight") / $photo.attr("data-shiki-photoWidth");
+      $photo.attr("data-shiki-photoAspect", photoAspect);
+
+      {block:IndexPage}
+      var areaHeight, areaAspect;
+      if (isDesktop) {
+        areaHeight = windowInnerWidth() * photoAspect * heightInfluenceParam;
+        if (areaHeight > windowInnerHeight()) {
+          areaHeight -= (areaHeight - windowInnerHeight()) * (1 - heightInfluenceParam);
+        }
+        areaAspect = areaHeight / windowInnerWidth();
+        $photo.css("background-size", (photoAspect > areaAspect) ?
+        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
                 .attr("data-shiki-areaHeight", areaHeight);
-          $photo.parents(".photo-block")
+        $photo.parents(".photo-block")
                 .css("height", areaHeight + "px");
 
-          $photo.parents(".entry-container").children(".hover-area")
-                  .on("mouseenter", function (e) {
-                    $(this).addClass("show hover");
-                  }).on("mouseleave", function (e) {
-                    $(this).removeClass("show hover");
-                  });
-        } else {
-          areaHeight = (windowInnerHeight() * (1 - mobileHeightInfluenceParam)) +
-                        (windowInnerWidth() * photoAspect * mobileHeightInfluenceParam);
-          areaAspect = areaHeight / windowInnerWidth();
-          $photo
+        $photo.parents(".entry-container").children(".hover-area")
+                .on("mouseenter", function (e) {
+                  $(this).addClass("show hover");
+                }).on("mouseleave", function (e) {
+                  $(this).removeClass("show hover");
+                });
+      } else {
+        areaHeight = (windowInnerHeight() * (1 - mobileHeightInfluenceParam)) +
+        (windowInnerWidth() * photoAspect * mobileHeightInfluenceParam);
+        areaAspect = areaHeight / windowInnerWidth();
+        $photo
                 .css("height", areaHeight + "px")
                 .css("background-size", (photoAspect > areaAspect) ?
-                        windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
+                windowInnerWidth() + "px auto" : "auto " + areaHeight + "px")
                 .css("background-position", "center")
                 .attr("data-shiki-areaHeight", areaHeight);
-          console.log (areaHeight);
-        }
-        {/block:IndexPage}
+        console.log (areaHeight);
+      }
+      {/block:IndexPage}
 
-        {block:PermalinkPage}
-        $photo.css("background-size", "100vw auto")
+      {block:PermalinkPage}
+      $photo.css("background-size", "100vw auto")
               .css("height", windowInnerWidth() * photoAspect + "px")
               .css("background-position", "center")
               .attr("data-shiki-areaHeight", windowInnerWidth() * photoAspect);
-        $photo.parents(".entry-container")
+      $photo.parents(".entry-container")
               .css("width", "100vw");
-        {/block:PermalinkPage}
-        return $photo;
-      };
+      {/block:PermalinkPage}
+      return $photo;
+    };
 
+    {block:IndexPage}
+    var updatePhotoPosition = function($photo) {
+      if ($photo.css("background-image") === "none") {
+        $photo.css("background-image", "url(" + $photo.attr("data-shiki-photoURL") + ")")
+      }
+
+      var relativeTop = $(window).scrollTop() - $photo.parents(".photo-block").offset().top;
+      var areaWidth  = windowInnerWidth();
+      var areaHeight =  parseFloat($photo.attr("data-shiki-areaHeight"));
+      var photoWidth  = parseInt($photo.attr("data-shiki-photoWidth"));
+      var photoHeight = parseInt($photo.attr("data-shiki-photoHeight"));
+      var scrollRate = (windowAspect() / 2 > areaHeight / areaWidth)?
+      (windowInnerHeight() - areaHeight + relativeTop) / (windowInnerHeight())
+              : (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight / 2); //(relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight);
+      var topDiff = areaHeight * (scrollRate - 0.5) * 2;
+      topDiff += (areaHeight - photoHeight * areaWidth / photoWidth) * (scrollRate);
+      topDiff = (1 - scrollRate) * (areaHeight - (photoHeight * areaWidth / photoWidth));//- areaHeight * (1 - scrollRate) + areaHeight * scrollRate;
+      $photo.css("transform", "translate3d(0,"+topDiff+"px,0)");
+      return $photo;
+    };
+    {/block:IndexPage}
+
+    var fetchNextPage = function(url) {
+      var d = new $.Deferred();
+      $.ajax({
+        type:     "GET",
+        url:      url,
+        success:  d.resolve,
+        error:    d.reject
+      });
+      return d.promise();
+    };
+
+    // スマホ振り分け
+    if (navigator.userAgent.indexOf("Mobile") > 0 ||
+            navigator.userAgent.indexOf("Android") > 0) {
+      $("body").addClass("mobile");
+      isDesktop = false;
+    } else {
+      $("body").addClass("desktop");
+      isDesktop = true;
+    }
+
+    {block:IndexPage}
+    if (isDesktop) {
+      $(".navbar")
+              .on("mouseenter", function (e) {
+                $(this).addClass("show hover");
+              }).on("mouseleave", function (e) {
+                $(this).removeClass("hover");
+                if ($(window).scrollTop() > 100) {
+                  $(this).removeClass("show");
+                }
+              });
+    } else {
+      $(".nav-handle").on("click", function(e) {
+        $(this).parents(".navbar").toggleClass("show hover");
+      });
+      $(".header-container").css("height", windowInnerHeight() / 2 + "px");
+    }
+    {/block:IndexPage}
+
+
+    {block:PermalinkPage}
+    $(".photo-container").each(function() {
+      $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
+      updatePhotoCSS($(this));
+    });
+    {/block:PermalinkPage}
+
+    $(window).scroll(function() {
+      var height = $(this).scrollTop();
+
+      // Photo/PhotoSet
       {block:IndexPage}
-      var updatePhotoPosition = function($photo) {
-        if ($photo.css("background-image") === "none") {
-          $photo.css("background-image", "url(" + $photo.attr("data-shiki-photoURL") + ")")
+      $(".photo-container").each(function() {
+        var relativeTop = height - $(this).offset().top;
+        var url = $(this).attr("data-shiki-photoURL");
+        if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 1600 >= relativeTop) {
+          if ($(this).css("background-image") === "none") {
+            $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
+            updatePhotoCSS($(this));
+            appearingPosts[url] = $(this);
+          }
+        } else {
+          if ($(this).css("background-image") !== "none") {
+            delete appearingPosts[url];
+            $(this).css("background-image", "none");
+          }
         }
-
-        var relativeTop = $(window).scrollTop() - $photo.parents(".photo-block").offset().top;
-        var areaWidth  = windowInnerWidth();
-        var areaHeight =  parseFloat($photo.attr("data-shiki-areaHeight"));
-        var photoWidth  = parseInt($photo.attr("data-shiki-photoWidth"));
-        var photoHeight = parseInt($photo.attr("data-shiki-photoHeight"));
-        var scrollRate = (windowAspect() / 2 > areaHeight / areaWidth)?
-                          (windowInnerHeight() - areaHeight + relativeTop) / (windowInnerHeight())
-                        : (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight / 2); //(relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight);
-        var topDiff = areaHeight * (scrollRate - 0.5) * 2;
-        topDiff += (areaHeight - photoHeight * areaWidth / photoWidth) * (scrollRate);
-        topDiff = (1 - scrollRate) * (areaHeight - (photoHeight * areaWidth / photoWidth));//- areaHeight * (1 - scrollRate) + areaHeight * scrollRate;
-        $photo.css("transform", "translate3d(0,"+topDiff+"px,0)");
-        return $photo;
-      };
+      });
       {/block:IndexPage}
 
-      var fetchNextPage = function(url) {
-        var d = new $.Deferred();
-        $.ajax({
-          type:     "GET",
-          url:      url,
-          success:  d.resolve,
-          error:    d.reject
-        });
-        return d.promise();
-      };
+      // YouTube
+      $("article.video .video-iframe").each(function() {
+        var $iframe = $(this).children("iframe");
+        var aspect = $iframe.attr("height") / $iframe.attr("width");
+        $(this).css("padding-top", (aspect * 100) + "%");
+      });
 
-      // スマホ振り分け
-      if (navigator.userAgent.indexOf("Mobile") > 0 ||
-          navigator.userAgent.indexOf("Android") > 0) {
-        $("body").addClass("mobile");
-        isDesktop = false;
-      } else {
-        $("body").addClass("desktop");
-        isDesktop = true;
-      }
+      // SoundCloud
+      $("article.audio .video-iframe").each(function() {
+        var $iframe = $(this).children("iframe");
+        var aspect = $iframe.attr("height") / $iframe.attr("width");
+        $(this).css("padding-top", (aspect * 100) + "%");
+      });
 
       {block:IndexPage}
-      if (isDesktop) {
-        $(".navbar")
-          .on("mouseenter", function (e) {
-            $(this).addClass("show hover");
-          }).on("mouseleave", function (e) {
-            $(this).removeClass("hover");
-            if ($(window).scrollTop() > 100) {
-              $(this).removeClass("show");
-            }
+      // Photo背景アップデート
+      for (k in appearingPosts) {
+        var $v = appearingPosts[k];
+        var relativeTop = height - $v.parents(".photo-block").offset().top;
+        var areaHeight = parseInt($v.attr("data-shiki-areaHeight"));
+        if ((relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) >= 0
+                && (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) <= 1) {
+          if (isDesktop) {
+            updatePhotoPosition($v);
+          }
+        }
+      }
+
+      // オートページャー
+      if (!nowFetching && !finalPage && $(document).height() - (height + window.innerHeight) < 1000) {
+        if (nextPageURL.length !== 0) {
+          nowFetching = true;
+          var url = nextPageURL.shift();
+          fetchNextPage(url).then(function(data) {
+            $(data).find("article").appendTo("#main");
+            nextPageURL = [];
+            $(data).find(".next-url").each(function() {
+              nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
+            });
+            nowFetching = false;
+            $(window).trigger("resize");
+          }, function(data) {
+            // fetch next nextPageURL
+            nowFetching = false;
+            $(window).trigger("scroll");
           });
-      } else {
-        $(".nav-handle").on("click", function(e) {
-          $(this).parents(".navbar").toggleClass("show hover");
-        });
-        $(".header-container").css("height", windowInnerHeight() / 2 + "px");
+        }
+        else {
+          $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
+          finalPage = true;
+        }
       }
       {/block:IndexPage}
 
+      // ヘッダー移動
+      if (isDesktop) {
+        var $navbar = $(".navbar");
+        if (height <= 100) {
+          $navbar.addClass("show");
+        } else if (!$navbar.hasClass("hover")) {
+          $navbar.removeClass("show");
+        }
+      }
+    });
 
+    $(window).resize(function() {
+      $(window).trigger("scroll");
       {block:PermalinkPage}
       $(".photo-container").each(function() {
-        $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
         updatePhotoCSS($(this));
       });
       {/block:PermalinkPage}
-
-      $(window).scroll(function() {
-        var height = $(this).scrollTop();
-
-        // Photo/PhotoSet
-        {block:IndexPage}
-        $(".photo-container").each(function() {
-          var relativeTop = height - $(this).offset().top;
-          var url = $(this).attr("data-shiki-photoURL");
-          if (-window.innerHeight - 400 <= relativeTop && window.innerHeight + 1600 >= relativeTop) {
-            if ($(this).css("background-image") === "none") {
-              $(this).css("background-image", "url(" + $(this).attr("data-shiki-photoURL") + ")");
-              updatePhotoCSS($(this));
-              appearingPosts[url] = $(this);
-            }
-          } else {
-            if ($(this).css("background-image") !== "none") {
-              delete appearingPosts[url];
-              $(this).css("background-image", "none");
-            }
-          }
-        });
-        {/block:IndexPage}
-
-        // YouTube
-        $("article.video .video-iframe").each(function() {
-          var $iframe = $(this).children("iframe");
-          var aspect = $iframe.attr("height") / $iframe.attr("width");
-          $(this).css("padding-top", (aspect * 100) + "%");
-        });
-
-        // SoundCloud
-        $("article.audio .video-iframe").each(function() {
-          var $iframe = $(this).children("iframe");
-          var aspect = $iframe.attr("height") / $iframe.attr("width");
-          $(this).css("padding-top", (aspect * 100) + "%");
-        });
-
-        {block:IndexPage}
-        // Photo背景アップデート
-        for (k in appearingPosts) {
-          var $v = appearingPosts[k];
-          var relativeTop = height - $v.parents(".photo-block").offset().top;
-          var areaHeight = parseInt($v.attr("data-shiki-areaHeight"));
-          if ((relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) >= 0
-                  && (relativeTop + windowInnerHeight()) / (windowInnerHeight() + areaHeight) <= 1) {
-            if (isDesktop) {
-              updatePhotoPosition($v);
-            }
-          }
-        }
-
-        // オートページャー
-        if (!nowFetching && !finalPage && $(document).height() - (height + window.innerHeight) < 1000) {
-          if (nextPageURL.length !== 0) {
-            nowFetching = true;
-            var url = nextPageURL.shift();
-            fetchNextPage(url).then(function(data) {
-              $(data).find("article").appendTo("#main");
-              nextPageURL = [];
-              $(data).find(".next-url").each(function() {
-                nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
-              });
-              nowFetching = false;
-              $(window).trigger("resize");
-            }, function(data) {
-              // fetch next nextPageURL
-              nowFetching = false;
-              $(window).trigger("scroll");
-            });
-          }
-          else {
-            $("#main").append('<p style="opacity:0.4; text-align: center;">:)</p>');
-            finalPage = true;
-          }
-        }
-        {/block:IndexPage}
-
-        // ヘッダー移動
-        if (isDesktop) {
-          var $navbar = $(".navbar");
-          if (height <= 100) {
-            $navbar.addClass("show");
-          } else if (!$navbar.hasClass("hover")) {
-            $navbar.removeClass("show");
-          }
-        }
-      });
-
-      $(window).resize(function() {
-        $(window).trigger("scroll");
-        {block:PermalinkPage}
-        $(".photo-container").each(function() {
-          updatePhotoCSS($(this));
-        });
-        {/block:PermalinkPage}
-      });
-
-      $(".next-url").each(function() {
-        nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
-      });
-
-      // ↑All preparations have done↑
-      $(document).ready(function() {
-        initializeCSS();
-        $(window).trigger("resize");
-      });
-
     });
-  </script>
 
-  {block:IfEnableLikeButton}
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-  {/block:IfEnableLikeButton}
+    $(".next-url").each(function() {
+      nextPageURL.push($(this).attr("data-shiki-nextPageURL"));
+    });
+
+    // ↑All preparations have done↑
+    $(document).ready(function() {
+      initializeCSS();
+      $(window).trigger("resize");
+    });
+
+  });
+</script>
+
+{block:IfEnableLikeButton}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{/block:IfEnableLikeButton}
 
 </body>
 </html>
