@@ -130,7 +130,6 @@
 
     @media screen and (max-width: 480px) {
       blockquote {
-        margin-top: 0;
         padding: 12px 0 12px 12px;
       }
     }
@@ -222,7 +221,7 @@
     .like-and-reblog-buttons li {
       display: inline-block;
       padding: 8px;
-      margin: 0 12px 0 0;
+      margin: 0 0 0 12px;
       width: 36px;
       height: 36px;
       border-radius: 30px;
@@ -235,8 +234,13 @@
       left: 8px;
     }
 
+    .like-and-reblog-buttons a.reblog_button {
+      overflow: visible;
+    }
+
     .meta-footer {
       font-size: 85%;
+      margin-bottom: 12px;
     }
 
     .nav {
@@ -752,7 +756,7 @@
     }
 
     .pagenation-permalink > * {
-      margin: 0 12px 0 0;
+      margin: 0 0 0 12px;
     }
 
     body.desktop .permalink-controller {
@@ -908,13 +912,6 @@
     <!-- post: テキスト -->
     {block:Text}
     <div class="entry-container">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       <header class="entry-header">
         {block:Title}
@@ -979,6 +976,13 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Text}
 
@@ -1070,9 +1074,9 @@
           </footer>
 
           {block:IndexPage}
-          <ul class="like-and-reblog-buttons">
-            <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-            <li class="like-button">{LikeButton color="white" size="24"}</li>
+          <ul class="like-and-reblog-buttons entry-text">
+            <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+            <li class="like-button">{LikeButton color="white" size="20"}</li>
           </ul>
           {/block:IndexPage}
         </div>
@@ -1168,9 +1172,9 @@
           </footer>
 
           {block:IndexPage}
-          <ul class="like-and-reblog-buttons">
-            <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-            <li class="like-button">{LikeButton color="white" size="24"}</li>
+          <ul class="like-and-reblog-buttons entry-text">
+            <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+            <li class="like-button">{LikeButton color="white" size="20"}</li>
           </ul>
           {/block:IndexPage}
         </div>
@@ -1181,13 +1185,6 @@
     <!-- post: 引用 -->
     {block:Quote}
     <div class="entry-container {Length}">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       <div class="entry-text lead">
         <blockquote>{Quote}</blockquote>
@@ -1239,19 +1236,19 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Quote}
 
     <!-- post: リンク -->
     {block:Link}
     <div class="entry-container">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       <header class="entry-header">
         <div class="entry-text">
@@ -1321,19 +1318,19 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Link}
 
     <!-- post: チャット -->
     {block:Chat}
     <div class="entry-container">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       {block:Title}
       <header class="entry-header">
@@ -1407,6 +1404,13 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Chat}
 
@@ -1480,9 +1484,9 @@
         </footer>
 
         {block:IndexPage}
-        <ul class="like-and-reblog-buttons">
-          <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-          <li class="like-button">{LikeButton color="white" size="24"}</li>
+        <ul class="like-and-reblog-buttons entry-text">
+          <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+          <li class="like-button">{LikeButton color="white" size="20"}</li>
         </ul>
         {/block:IndexPage}
       </div>
@@ -1492,13 +1496,6 @@
     <!-- post: オーディオ -->
     {block:Audio}
     <div class="entry-container">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       {AudioPlayer}
       {block:PermalinkPage}</div>{/block:PermalinkPage}
@@ -1561,19 +1558,19 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Audio}
 
     <!-- post: Answer -->
     {block:Answer}
     <div class="entry-container">
-      {block:IndexPage}
-      <ul class="like-and-reblog-buttons">
-        <li class="reblog-button">{ReblogButton color="white" size="24"}</li>
-        <li class="like-button">{LikeButton color="white" size="24"}</li>
-      </ul>
-      {/block:IndexPage}
-
       {block:PermalinkPage}<div class="permalink-spacer">{/block:PermalinkPage}
       <div class="entry-text">
         <div class="question bubble">
@@ -1631,6 +1628,13 @@
           </div>
         </div>
       </footer>
+
+      {block:IndexPage}
+      <ul class="like-and-reblog-buttons entry-text">
+        <li class="reblog-button">{ReblogButton color="white" size="20"}</li>
+        <li class="like-button">{LikeButton color="white" size="20"}</li>
+      </ul>
+      {/block:IndexPage}
     </div>
     {/block:Answer}
 
