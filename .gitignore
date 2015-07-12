@@ -18,3 +18,5 @@ Session.vim
 
 logo/
 image/
+node_modules/
+dest/

@@ -1,0 +1,29 @@
+{
+  "name": "shiki",
+  "version": "3.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spring-raining/Shiki.git"
+  },
+  "author": "spring_raining",
+  "license": "CC-BY-4.0",
+  "bugs": {
+    "url": "https://github.com/spring-raining/Shiki/issues"
+  },
+  "homepage": "https://github.com/spring-raining/Shiki#readme",
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-inline-source": "^2.0.0",
+    "gulp-postcss": "^5.1.9",
+    "gulp-sass": "^2.0.3",
+    "run-sequence": "^1.1.1"
+  }
+}
