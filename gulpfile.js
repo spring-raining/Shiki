@@ -33,11 +33,14 @@ gulp.task("compile-sass", function () {
     .pipe(gulp.dest("./dest"));
 });
 
-gulp.task("inlinesource", function () {
-  var inlinesource = require("gulp-inline-source");
-
+gulp.task("copy-html", function () {
   // copy HTML files
-  gulp.src("./src/*.html").pipe(gulp.dest("./dest"));
+  return gulp.src("./src/*.html")
+    .pipe(gulp.dest("./dest"));
+});
+
+gulp.task("inlinesource", ["copy-html"], function () {
+  var inlinesource = require("gulp-inline-source");
 
   return gulp.src("./dest/*.html")
     .pipe(inlinesource())
