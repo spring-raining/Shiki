@@ -20,6 +20,7 @@
     "autoprefixer-core": "^5.2.1",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
+    "gulp-clipboard": "^0.1.1",
     "gulp-coffee": "^2.3.1",
     "gulp-inline-source": "^2.0.0",
     "gulp-postcss": "^5.1.9",

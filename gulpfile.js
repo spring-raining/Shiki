@@ -6,12 +6,20 @@ gulp.task("build", function () {
   sequence(
     "clean",
     ["compile-coffee", "compile-sass"],
-    "inlinesource"
+    "inlinesource",
+    "clipboard"
   );
 });
 
 gulp.task("clean", function() {
   del(["./dest/*"]);
+});
+
+gulp.task("clipboard", function () {
+  var clipboard = require("gulp-clipboard");
+
+  return gulp.src("./dest/index.html")
+    .pipe(clipboard())
 });
 
 gulp.task("compile-coffee", function () {
